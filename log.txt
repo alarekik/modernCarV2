@@ -1,0 +1,29 @@
+commit d558c50480760620670a3e9b717d6619d677b424
+Author: alarekik <alarekikmahres@gmail.com>
+Date:   Fri Jul 18 18:12:12 2025 +0100
+
+    Version 3
+
+commit 57ba9370d29930e84dd77efcb127487f237d240a
+Author: alarekik <alarekikmahres@gmail.com>
+Date:   Fri Jul 18 17:46:53 2025 +0100
+
+    Version 2: Map + Gauge animation
+
+commit a0416fc998ec7e83dd648b60d19035560af8ba89
+Author: alarekik <alarekikmahres@gmail.com>
+Date:   Wed Jul 16 14:16:59 2025 +0100
+
+    inial commit : project setup
+
+commit d24f76c033919274d24c38f06175970f172fa8f6
+Author: alarekik <alarekikmahres@gmail.com>
+Date:   Wed Jul 16 14:13:42 2025 +0100
+
+    first commit
+
+commit a39eac3a2ee354db819f6ba16624aca6b41195e6
+Author: alarekik <alarekikmahres@gmail.com>
+Date:   Wed Jul 16 14:04:41 2025 +0100
+
+    first commit
