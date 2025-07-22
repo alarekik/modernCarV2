@@ -16,17 +16,17 @@ ApplicationWindow {
     property bool isIncrementing     : true
     property bool isIncrementingleft : true
     //background
-    background: Image{
+    /*background: Image{
         anchors.fill:parent
         source: "qrc:/icons/Background.png"
-    }
+    }*/
 
     // Base Layer
 
     Image {
         id : backgroundcluster
         anchors.centerIn: parent
-        sourceSize: Qt.size(1492,717)
+        sourceSize: Qt.size(1200,720)
         source: "qrc:/icons/Base.svg"
 
 
@@ -79,7 +79,7 @@ ApplicationWindow {
             anchors{
                 verticalCenter: parent.verticalCenter
                 left: parent.left
-                leftMargin: parent.width / 11
+                leftMargin: parent.width/10
             }
             property bool accelerating
             //this value was change and the old value was height and width 400
@@ -182,12 +182,7 @@ ApplicationWindow {
             source: "qrc:/icons/Car.svg"
         }
 
-        // IMGonline.com.ua  ==> Compress Image With
 
-
-        /*
-          Left Road
-        */
 
         Image {
             id: leftRoad
@@ -205,10 +200,10 @@ ApplicationWindow {
 
         RowLayout{
             spacing: 20
-
+              //this op MPH
             anchors{
                 left: parent.left
-                leftMargin: 250
+                leftMargin: 100
                 bottom: parent.bottom
                 bottomMargin: 26.50 + 65
             }
@@ -287,7 +282,7 @@ ApplicationWindow {
             anchors{
                 verticalCenter: parent.verticalCenter
                 right: parent.right
-                rightMargin: parent.width /11
+                rightMargin: parent.width/10
             }
             property bool accelerating
             //-----------------
@@ -300,7 +295,7 @@ ApplicationWindow {
         }
     }
 
-    //---------------------------------------------------------------------------
+    //-----------------------------animation section----------------------------------------------
     Timer {
             id: valueSenderTimer
             interval: 50
@@ -355,27 +350,27 @@ ApplicationWindow {
         }
     Rectangle{
         id : rectanglemap
-        width: 1130
-        height: 320
-        radius: width / 5 //1.2
+        width: backgroundcluster.width *0.65
+        height: backgroundcluster.height*0.35
+        radius: width /10
         visible: false
         clip: true
-        x: 360
-        y: 350
-        opacity: 1
+        anchors.centerIn: backgroundcluster
+        opacity: 0.8
         z: -1
         color: "#dfdcd5"
 
         Map {
 
             id: map
-            width: 900
-            height: 300
+            width: parent.width -80
+            height: parent.height-15
             anchors.centerIn: parent
             plugin: mapPlugin
             center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
             zoomLevel: 14
-            opacity: 0.7
+            z : 0
+            opacity: 1
             MapRoute {
                 id: mapRoute
                 route: routingModel.get(0).route

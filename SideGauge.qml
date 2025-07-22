@@ -8,9 +8,7 @@ import QtGraphicalEffects 1.0
 
 CircularGauge {
     id: gauge
-    //------------------------------------------------
 
-    //*******************
     property string speedColor: "yellow"
 
     // Define the radius and angle for the arc
