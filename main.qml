@@ -55,7 +55,11 @@ ApplicationWindow {
                 MyButton{
                     isGlow : true
                     setIcon: isGlow ? "qrc:/icons/light/Car_Icon.svg" : "qrc:/icons/Car_icon.svg"
-                    onClicked: isGlow = !isGlow
+                    onClicked:{
+
+                        isGlow = !isGlow;
+                        canbus.sendCanMessage;
+                    }
                 }
 
                 MyButton{
@@ -356,7 +360,7 @@ ApplicationWindow {
         visible: false
         clip: true
         anchors.centerIn: backgroundcluster
-        opacity: 0.8
+        opacity: 1
         z: -1
         color: "#dfdcd5"
 
@@ -367,7 +371,7 @@ ApplicationWindow {
             height: parent.height-15
             anchors.centerIn: parent
             plugin: mapPlugin
-            center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
+            //center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
             zoomLevel: 14
             z : 0
             opacity: 1

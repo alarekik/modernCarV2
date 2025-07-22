@@ -2,14 +2,18 @@
 #define CANHANDLER_H
 
 #include <QObject>
-#include <QQuickItem>
-#include <QCanBus>
-#include <QCanBusDevice>
 
-class Canhandler
+#include<QCanBusDevice>
+#include <QCanBus>
+
+class canhandler : public QObject
 {
+    Q_OBJECT
+
 public:
-    Canhandler();
+    explicit canhandler(QObject *parent = nullptr);
+    void sendCanMessage();
+signals:
 };
 
 #endif // CANHANDLER_H
