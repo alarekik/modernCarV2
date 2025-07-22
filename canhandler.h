@@ -2,7 +2,7 @@
 #define CANHANDLER_H
 
 #include <QObject>
-
+#include <QtDebug>
 #include<QCanBusDevice>
 #include <QCanBus>
 

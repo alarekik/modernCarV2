@@ -371,25 +371,25 @@ ApplicationWindow {
             height: parent.height-15
             anchors.centerIn: parent
             plugin: mapPlugin
-            //center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
+            center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
             zoomLevel: 14
             z : 0
             opacity: 1
-            MapRoute {
-                id: mapRoute
-                route: routingModel.get(0).route
-            }
+            // MapRoute {
+            //     id: mapRoute
+            //     route: routingModel.get(0).route
+            // }
 
-            RouteModel {
-                id: routingModel
-                plugin: mapPlugin
-                query: RouteQuery {
-                    waypoints: [
-                        QtPositioning.coordinate(36.8984457, 10.1872208), // Start
-                        destinationCoord // Dynamic destination
-                    ]
-                }
-            }
+            // RouteModel {
+            //     id: routingModel
+            //     plugin: mapPlugin
+            //     query: RouteQuery {
+            //         waypoints: [
+            //             QtPositioning.coordinate(36.8984457, 10.1872208), // Start
+            //             destinationCoord // Dynamic destination
+            //         ]
+            //     }
+            // }
 
 
         }
