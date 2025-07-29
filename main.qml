@@ -4,6 +4,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtLocation 5.11
 import QtPositioning 5.0
+import QtMultimedia 5.15
 
 ApplicationWindow {
     id:root
@@ -50,7 +51,11 @@ ApplicationWindow {
                 }
                 MyButton{
                     setIcon: isGlow ? "qrc:/icons/light/ep_menu.svg" :  "qrc:/icons/ep_menu.svg"
-                    onClicked: isGlow = !isGlow
+                    onClicked : {
+                        isGlow = !isGlow;
+                        leftGauge.visible = ! ( leftGauge.visible);
+                        blockcamera.visible = ! ( blockcamera.visible);
+                    }
                 }
                 MyButton{
                     isGlow : true
@@ -58,7 +63,7 @@ ApplicationWindow {
                     onClicked:{
 
                         isGlow = !isGlow;
-                        canbus.sendCanMessage;
+                        canbus.sendCanMessage();
                     }
                 }
 
@@ -74,12 +79,28 @@ ApplicationWindow {
                         rectanglemap.visible = ! ( rectanglemap.visible);
                     }
                 }
+                Button
+                {
+                    text: canbus.connected ? "Disconnect" : "Connect"
+                    onClicked: {
+                        if (canbus.connected) {
+                            canbus.disconnectFromCanBus();
+                        }
+                        else
+                        {
+                            canbus.connectToCanBus("can0");
+                        }
+                    }
+
+                }
             }
+
         }
 
 
         SideGauge {
             id:leftGauge
+            visible: true
             anchors{
                 verticalCenter: parent.verticalCenter
                 left: parent.left
@@ -343,6 +364,44 @@ ApplicationWindow {
             }
 
         }
+
+    //------------------------------------Camera Section---------------------------------------
+
+    Rectangle {
+            id:blockcamera
+            width: 350
+            height: 300
+            visible: false
+            color: "transparent"
+            radius: 20  // Half of width/height for perfect circle
+            clip: true
+            anchors{
+                verticalCenter: backgroundcluster.verticalCenter
+                left: backgroundcluster.left
+                leftMargin: backgroundcluster.width/9
+            }
+            Camera {
+                id: camera
+                captureMode: Camera.CaptureViewfinder
+
+                Component.onCompleted: {
+                    camera.start();
+                }
+
+                onError: {
+                    console.log("Camera error: " + errorString);
+                }
+            }
+
+            VideoOutput {
+                id: viewfinder
+                anchors.fill: parent
+                source: camera
+                fillMode: VideoOutput.PreserveAspectFit
+            }
+        }
+
+
     //------------------------------------Map Section------------------------------------------
 
     property var destinationCoord: QtPositioning.coordinate(36.899, 10.2) // default

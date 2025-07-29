@@ -2,18 +2,35 @@
 #define CANHANDLER_H
 
 #include <QObject>
-#include <QtDebug>
-#include<QCanBusDevice>
 #include <QCanBus>
+#include <QCanBusDevice>
+#include <QCanBusFrame>
 
-class canhandler : public QObject
+class CanHandler : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool isConnected READ isConnected NOTIFY connectionChanged)
 
 public:
-    explicit canhandler(QObject *parent = nullptr);
-    void sendCanMessage();
+    explicit CanHandler(QObject *parent = nullptr);
+
+    bool isConnected() const;
+
+public slots:
+    Q_INVOKABLE void connectToCanBus(const QString &interfaceName = "can0");
+    Q_INVOKABLE void disconnectFromCanBus();
+    Q_INVOKABLE bool sendCanMessage();
+    Q_INVOKABLE void sendMessage(const QString &id, const QString &data);
+
 signals:
+    void connectionChanged();
+    void messageReceived(const QString &id, const QString &data);
+    void errorMessage(const QString &error);
+
+
+//creat a canbus device instance
+private:
+    QCanBusDevice *m_canDevice;
 };
 
 #endif // CANHANDLER_H
