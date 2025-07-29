@@ -22,7 +22,7 @@ void CanHandler::connectToCanBus(const QString &interfaceName)
 
     QString pluginName = "socketcan";
     m_canDevice = QCanBus::instance()->createDevice(pluginName, interfaceName);
-
+    m_canDevice->setConfigurationParameter(QCanBusDevice::BitRateKey, 250000);
     if (!m_canDevice) {
         emit errorMessage("Failed to create CAN device");
         return;
