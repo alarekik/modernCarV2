@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
     CameraController cameraController;
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("cameraController", &cameraController);
+    QQmlContext * rootContext = engine.rootContext();
+    rootContext->setContextProperty("canbus", &canbus );
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -25,7 +27,6 @@ int main(int argc, char *argv[])
         }, Qt::QueuedConnection);
     engine.load(url);
     //--------
-    QQmlContext * rootContext = engine.rootContext();
-    rootContext->setContextProperty("canbus", &canbus );
+
     return app.exec();
 }
