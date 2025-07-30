@@ -19,6 +19,10 @@ int main(int argc, char *argv[])
     QQmlContext * rootContext = engine.rootContext();
     rootContext->setContextProperty("canbus", &canbus );
 
+    //------------------
+    canbus.connectToCanBus("can0");
+    //----------
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {
