@@ -9,7 +9,7 @@ CanHandler::CanHandler(QObject *parent)
 {
 }
 
-bool CanHandler::isConnected() const
+bool CanHandler::Connected() const
 {
     return m_canDevice && m_canDevice->state() == QCanBusDevice::ConnectedState;
 }
@@ -22,9 +22,11 @@ void CanHandler::connectToCanBus(const QString &interfaceName)
 
     QString pluginName = "socketcan";
     m_canDevice = QCanBus::instance()->createDevice(pluginName, interfaceName);
-    m_canDevice->setConfigurationParameter(QCanBusDevice::BitRateKey, 250000);
+    m_canDevice->setConfigurationParameter(QCanBusDevice::BitRateKey, 125000);
+    m_canDevice->setConfigurationParameter(QCanBusDevice::CanFdKey, false);
     if (!m_canDevice) {
         emit errorMessage("Failed to create CAN device");
+        qDebug() << "failed";
         return;
     }
 
@@ -70,10 +72,10 @@ void CanHandler::disconnectFromCanBus()
 bool CanHandler::sendCanMessage()
 {
 
-    quint32 frameId=1123;
+    quint32 frameId=0x123;
     QByteArray data;
     data.append(10);
-    data.append(20);
+
 
     if (!m_canDevice || !m_canDevice->state() == QCanBusDevice::ConnectedState) {
         emit errorMessage("CAN device not connected");

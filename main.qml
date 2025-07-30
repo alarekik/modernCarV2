@@ -80,16 +80,12 @@ ApplicationWindow {
                     }
                 }
                 Button
-                {
-                    text: canbus.connected ? "Disconnect" : "Connect"
+                {   
+                    text: canbus.Connected() ? "diconcted" : "conected"
+                    font.pixelSize: 24
                     onClicked: {
-                        if (canbus.connected) {
-                            canbus.disconnectFromCanBus();
-                        }
-                        else
-                        {
-                            canbus.connectToCanBus("can0");
-                        }
+                      canbus.connectToCanBus("can0");
+
                     }
 
                 }

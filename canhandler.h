@@ -14,7 +14,7 @@ class CanHandler : public QObject
 public:
     explicit CanHandler(QObject *parent = nullptr);
 
-    bool isConnected() const;
+    Q_INVOKABLE bool Connected() const;
 
 public slots:
     Q_INVOKABLE void connectToCanBus(const QString &interfaceName = "can0");
