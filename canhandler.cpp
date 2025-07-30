@@ -9,7 +9,7 @@ CanHandler::CanHandler(QObject *parent)
 {
 }
 
-bool CanHandler::Connected() const
+bool CanHandler::isConnected() const
 {
     return m_canDevice && m_canDevice->state() == QCanBusDevice::ConnectedState;
 }

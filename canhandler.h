@@ -9,12 +9,12 @@
 class CanHandler : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool isConnected READ isConnected NOTIFY connectionChanged)
+    Q_PROPERTY(bool Connected READ isConnected NOTIFY connectionChanged)
 
 public:
     explicit CanHandler(QObject *parent = nullptr);
 
-    Q_INVOKABLE bool Connected() const;
+    Q_INVOKABLE bool isConnected() const;
 
 public slots:
     Q_INVOKABLE void connectToCanBus(const QString &interfaceName = "can0");

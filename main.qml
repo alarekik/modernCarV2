@@ -81,7 +81,7 @@ ApplicationWindow {
                 }
                 Button
                 {   
-                    text: canbus.Connected() ? "diconcted" : "conected"
+                    text: canbus.isConnected() ? "diconcted" : "conected"
                     font.pixelSize: 24
                     onClicked: {
                       canbus.connectToCanBus("can0");
