@@ -53,7 +53,7 @@ ApplicationWindow {
                     setIcon: isGlow ? "qrc:/icons/light/ep_menu.svg" :  "qrc:/icons/ep_menu.svg"
                     onClicked : {
                         isGlow = !isGlow;
-                        leftGauge.visible = ! ( leftGauge.visible);
+                        //leftGauge.visible = ! ( leftGauge.visible);
                         blockcamera.visible = ! ( blockcamera.visible);
                     }
                 }
@@ -345,7 +345,7 @@ ApplicationWindow {
                     leftGauge.value  += 20;
                     if (leftGauge.value >= 250)
                     {
-                        isIncrementingleft  = false;
+                        isIncrementingleft = false;
                     }
                 }
                 else
@@ -365,37 +365,58 @@ ApplicationWindow {
 
     Rectangle {
             id:blockcamera
-            width: 350
+            width: 300
             height: 300
             visible: false
             color: "transparent"
-            radius: 20  // Half of width/height for perfect circle
+            radius: 150   // Half of width/height for perfect circle
             clip: true
             anchors{
                 verticalCenter: backgroundcluster.verticalCenter
                 left: backgroundcluster.left
-                leftMargin: backgroundcluster.width/9
+                leftMargin: backgroundcluster.width/7
             }
+
+
+
             Camera {
                 id: camera
                 captureMode: Camera.CaptureViewfinder
-
                 Component.onCompleted: {
                     camera.start();
                 }
-
                 onError: {
                     console.log("Camera error: " + errorString);
                 }
             }
 
-            VideoOutput {
-                id: viewfinder
-                anchors.fill: parent
-                source: camera
-                fillMode: VideoOutput.PreserveAspectFit
-            }
+                VideoOutput {
+                    id: viewfinder
+                    anchors.fill: parent
+                    source: camera
+                    fillMode: VideoOutput.PreserveAspectFit
+                    layer.enabled: true
+                    layer.smooth: true
+                    layer.effect: ShaderEffect {
+                        property variant source: viewfinder
+
+                        fragmentShader: "
+                            uniform sampler2D source;
+                            varying vec2 qt_TexCoord0;
+
+                            void main() {
+                                vec2 coord = qt_TexCoord0 - vec2(0.5);
+                                if (length(coord) > 0.36) {
+                                    discard;
+                                }
+                                gl_FragColor = texture2D(source, qt_TexCoord0);
+                            }
+                        "
+                    }
+
+                }
         }
+
 
 
     //------------------------------------Map Section------------------------------------------
