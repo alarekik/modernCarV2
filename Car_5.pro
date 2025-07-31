@@ -27,3 +27,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     cameracontroller.h \
     canhandler.h
+
+DISTFILES += \
+    img/map_off.png \
+    img/map_on.png

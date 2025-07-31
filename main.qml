@@ -47,7 +47,13 @@ ApplicationWindow {
                 spacing: 60
                 MyButton{
                     setIcon: isGlow ? "qrc:/icons/light/bxs_music.svg" : "qrc:/icons/bxs_music.svg"
-                    onClicked: isGlow = !isGlow
+                    onClicked: {
+
+                        isGlow = !isGlow;
+                        breathrate.visible=!(breathrate.visible);
+                        heartbeat.visible=!(heartbeat.visible);
+                    }
+
                 }
                 MyButton{
                     setIcon: isGlow ? "qrc:/icons/light/ep_menu.svg" :  "qrc:/icons/ep_menu.svg"
@@ -73,21 +79,11 @@ ApplicationWindow {
                 }
                 MyButton{
                     id : sttingsButton
-                    setIcon: isGlow ? "qrc:/icons/light/clarity_settings-solid.svg" :  "qrc:/icons/clarity_settings-solid.svg"
+                    setIcon: isGlow ? "qrc:/img/map_on.png" :  "qrc:/img/map_off.png"
                     onClicked : {
                         isGlow = !isGlow;
                         rectanglemap.visible = ! ( rectanglemap.visible);
                     }
-                }
-                Button
-                {   
-                    text: canbus.isConnected() ? "diconcted" : "conected"
-                    font.pixelSize: 24
-                    onClicked: {
-                      canbus.connectToCanBus("can0");
-
-                    }
-
                 }
             }
 
@@ -419,7 +415,7 @@ ApplicationWindow {
 
 
 
-    //------------------------------------Map Section------------------------------------------
+    // //------------------------------------Map Section------------------------------------------
 
     property var destinationCoord: QtPositioning.coordinate(36.899, 10.2) // default
 
@@ -428,51 +424,266 @@ ApplicationWindow {
             id: mapPlugin
             name: "osm"
         }
-    Rectangle{
-        id : rectanglemap
-        width: backgroundcluster.width *0.65
-        height: backgroundcluster.height*0.35
-        radius: width /10
+    // Rectangle{
+    //     id : rectanglemap
+    //     width: backgroundcluster.width *0.65
+    //     height: backgroundcluster.height*0.35
+    //     radius: width /10
+    //     visible: false
+    //     clip: true
+    //     anchors.centerIn: backgroundcluster
+    //     opacity: 1
+    //     z: -1
+    //     color: "#dfdcd5"
+
+    //     Map {
+
+    //         id: map
+    //         width: parent.width -80
+    //         height: parent.height-15
+    //         anchors.centerIn: parent
+    //         plugin: mapPlugin
+    //         center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
+    //         zoomLevel: 14
+    //         z : 0
+    //         opacity: 1
+    //         // MapRoute {
+    //         //     id: mapRoute
+    //         //     route: routingModel.get(0).route
+    //         // }
+
+    //         // RouteModel {
+    //         //     id: routingModel
+    //         //     plugin: mapPlugin
+    //         //     query: RouteQuery {
+    //         //         waypoints: [
+    //         //             QtPositioning.coordinate(36.8984457, 10.1872208), // Start
+    //         //             destinationCoord // Dynamic destination
+    //         //         ]
+    //         //     }
+    //         // }
+
+
+    //     }
+
+    // }
+
+    /****************************************************************************************/
+    /**************************ROUNDED MAP***************************************************/
+    /****************************************************************************************/
+    Rectangle {
+        id: rectanglemap
+        width: backgroundcluster.width * 0.7
+        height: width * 1
+        color: "#dfdcd5"
         visible: false
-        clip: true
         anchors.centerIn: backgroundcluster
         opacity: 1
         z: -1
-        color: "#dfdcd5"
+        clip: true
 
-        Map {
-
-            id: map
-            width: parent.width -80
-            height: parent.height-15
-            anchors.centerIn: parent
-            plugin: mapPlugin
-            center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
-            zoomLevel: 14
-            z : 0
-            opacity: 1
-            // MapRoute {
-            //     id: mapRoute
-            //     route: routingModel.get(0).route
-            // }
-
-            // RouteModel {
-            //     id: routingModel
-            //     plugin: mapPlugin
-            //     query: RouteQuery {
-            //         waypoints: [
-            //             QtPositioning.coordinate(36.8984457, 10.1872208), // Start
-            //             destinationCoord // Dynamic destination
-            //         ]
-            //     }
-            // }
+        border.color: "#a0a0a0"
+        border.width: 1
 
 
+        layer.enabled: true
+        layer.smooth: true
+
+        layer.effect: ShaderEffect {
+            property variant source: rectanglemap
+
+            fragmentShader: "
+                uniform sampler2D source;
+                varying vec2 qt_TexCoord0;
+
+                void main() {
+                    vec2 coord = qt_TexCoord0 - vec2(0.5);
+                    float x = coord.x;
+                    float y = coord.y;
+
+                    float a = 0.5;   // width
+                    float b = 0.23;   // height
+                    float k = 0.1;   // asymmetry (pointed end)
+
+                    float oval = (x*x)/(a*a) + (y*y)/(b*b) * (1.0 + k * y);
+
+                    if (oval > 1.0) discard;
+
+                    gl_FragColor = texture2D(source, qt_TexCoord0);
+                }
+            "
         }
 
+        Map {
+            id: map
+            width: parent.width * 0.9
+            height: parent.height * 0.9
+            anchors.centerIn: parent
+            plugin: mapPlugin
+            center: QtPositioning.coordinate(36.8984457, 10.1872208)
+            zoomLevel: 14
+        }
     }
 
 
+       // This is your original Map component, but with the new shader effect
+       // Rectangle {
+       //     id: rectanglemap
+       //     width: backgroundcluster.width * 0.7
+       //     height: width // Aspect ratio of 1:1
+       //     color: "#dfdcd5" // This color is mostly irrelevant as the map will cover it
+       //     visible: true // Set to true to see the effect
+       //     anchors.centerIn: backgroundcluster
+       //     clip: true // Good practice, but the shader handles the clipping now
 
+       //     border.color: "#a0a0a0" // This border will be clipped by the shader
+       //     border.width: 1
+
+       //     // The layer is necessary to apply a ShaderEffect
+       //     layer.enabled: true
+       //     layer.smooth: true // Helps improve quality
+
+       //     layer.effect: ShaderEffect {
+       //         // Add a property to control the amount of blur from QML
+       //         property real blurAmount: 0.05
+
+       //         // The source for the shader is the rectangle and its children (the Map)
+       //         property variant source: rectanglemap
+
+       //         // The updated fragment shader for soft edges
+       //         fragmentShader: "
+       //             // Uniforms passed in from QML
+       //             uniform sampler2D source;
+       //             uniform float blurAmount;
+
+       //             // Varying passed in from the vertex shader
+       //             varying vec2 qt_TexCoord0;
+
+       //             void main() {
+       //                 // Center the texture coordinates to be [-0.5, 0.5]
+       //                 vec2 coord = qt_TexCoord0 - vec2(0.5);
+       //                 float x = coord.x;
+       //                 float y = coord.y;
+
+       //                 // Shape parameters (same as before)
+       //                 float a = 0.5;    // width
+       //                 float b = 0.23;   // height
+       //                 float k = 0.1;    // asymmetry
+
+       //                 // The formula for your teardrop/egg shape
+       //                 float oval = (x*x)/(a*a) + (y*y)/(b*b) * (1.0 + k * y);
+
+       //                 // --- KEY CHANGE IS HERE ---
+       //                 // Instead of a hard 'discard', we calculate a smooth alpha value.
+       //                 // smoothstep(edge0, edge1, x) transitions from 0.0 to 1.0 as x goes from edge0 to edge1.
+       //                 // We want the reverse (1.0 to 0.0), so we subtract the result from 1.0.
+       //                 // 'oval' is our distance metric. When it's < 1.0, we are inside the shape.
+       //                 // The transition will happen between oval=1.0 and oval=1.0 + blurAmount.
+       //                 float smooth_alpha = 1.0 - smoothstep(1.0, 1.0 + blurAmount, oval);
+
+       //                 // Get the original pixel color from the source (our Map)
+       //                 vec4 original_color = texture2D(source, qt_TexCoord0);
+
+       //                 // Set the final pixel color. We use the original RGB values,
+       //                 // but multiply its alpha by our calculated smooth_alpha.
+       //                 gl_FragColor = vec4(original_color.rgb, original_color.a * smooth_alpha);
+       //             }
+       //         "
+       //     }
+
+       //     Map {
+       //         id: map
+       //         width: parent.width
+       //         height: parent.height
+       //         anchors.centerIn: parent
+
+       //         // You need to define the plugin for the map to work.
+       //         // Example using the "osm" plugin.
+       //         plugin: Plugin {
+       //             name: "osm"
+       //         }
+
+       //         center: QtPositioning.coordinate(36.8984457, 10.1872208) // Tunis
+       //         zoomLevel: 14
+       //     }
+       // }
     //------------------------
+    //-------BCG--------------------------------------------------------
+    Rectangle{
+        id : breathrate
+        width: 210
+        height: 210
+        radius: width/2
+        color: "#163546"
+        visible: false
+        anchors{
+            verticalCenter: backgroundcluster.verticalCenter
+            left: backgroundcluster.left
+            leftMargin: backgroundcluster.width/5.6
+        }
+        Label{
+            text: "60"
+            font.pixelSize: 65
+            font.family: "Inter"
+            color: "#FFFFFF"
+            font.bold: Font.DemiBold
+            Layout.alignment: Qt.AlignHCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        AnimatedImage {
+               id: gifImage
+               source: "qrc:/img/breathrate.gif"  // Path to your GIF
+               anchors.top: parent.top
+               anchors.topMargin: 15
+               anchors.horizontalCenter: parent.horizontalCenter
+               width: 120
+               height: 120
+
+               // Optional: Control playback
+               playing: true  // Set to false to pause
+           }
+
+    }
+    Rectangle{
+        id : heartbeat
+        width: 210
+        height: 210
+        radius: width/2
+        color: "#163546"
+        visible: false
+        anchors{
+            verticalCenter: backgroundcluster.verticalCenter
+            right:  backgroundcluster.right
+            rightMargin:  backgroundcluster.width/5.6
+        }
+        Label{
+            text: "60"
+            font.pixelSize: 65
+            font.family: "Inter"
+            color: "#FFFFFF"
+            font.bold: Font.DemiBold
+            Layout.alignment: Qt.AlignHCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        AnimatedImage {
+               id: gifImage2
+               source: "qrc:/img/heartbeat.gif"
+               anchors.top: parent.top
+               anchors.topMargin: 15
+               anchors.horizontalCenter: parent.horizontalCenter
+               width: 120
+               height: 120
+
+               // Optional: Control playback
+               playing: true  // Set to false to pause
+           }
+
+    }
+
 }
+
+

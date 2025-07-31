@@ -40,5 +40,11 @@
         <file>icons/Headlights.svg</file>
         <file>icons/light/Car_Icon.svg</file>
         <file>icons/Car_icon.svg</file>
+        <file>img/road.png</file>
+        <file>img/roadalert.png</file>
+        <file>img/breathrate.gif</file>
+        <file>img/map_off.png</file>
+        <file>img/map_on.png</file>
+        <file>img/heartbeat.gif</file>
     </qresource>
 </RCC>
