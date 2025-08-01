@@ -26,19 +26,25 @@ ApplicationWindow {
     //-----test can update---
     Label {
         id: canid
-        text: "Last CAN ID: " + canbus.messageid
+        text: "Last CAN ID: " + canbus.lastMessageId()
         anchors.centerIn: parent
         font.pixelSize: 15
         color: "white"
     }
     Label {
 
-        text: "Last CAN ID: " + canbus.messagedata
+        text: "Last CAN ID: " + canbus.lastMessageData()
         anchors.bottom: canid.top
         anchors.bottomMargin: 10
         anchors.left: canid.left
         font.pixelSize : 15
         color: "white"
+    }
+    Connections {
+        target: canHandler
+        function onMessageUpdated() {
+            console.log("Received:", canHandler.lastMessageId, canHandler.lastMessageData)
+        }
     }
     //-----------------------------
     Image {
