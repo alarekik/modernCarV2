@@ -21,8 +21,9 @@ int main(int argc, char *argv[])
 
     //------------------
     canbus.connectToCanBus("can0");
-    //----------
-
+    //----------this to ensure the connect run in GUI--------
+    QMetaObject::invokeMethod(&canbus, "connectToCanBus", Qt::QueuedConnection,Q_ARG(QString, "can0"));
+    //---------
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {

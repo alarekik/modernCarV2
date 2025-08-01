@@ -34,12 +34,22 @@ void CanHandler::connectToCanBus(const QString &interfaceName)
         while (m_canDevice && m_canDevice->framesAvailable()) {
             const QCanBusFrame frame = m_canDevice->readFrame();
             if (frame.frameType() == QCanBusFrame::DataFrame) {
-                QString id = QString::number(frame.frameId(), 16);
+                QString id = QString::number(frame.frameId(), 16).toUpper(); // e.g., "1A3"
                 QString data;
-                for (int i = 0; i < frame.payload().size(); ++i) {
-                    data += QString::number(static_cast<uchar>(frame.payload().at(i)), 16).rightJustified(2, '0');
+                const QByteArray payload = frame.payload();
+                for (int i = 0; i < payload.size(); ++i) {
+                    data += QString::number(static_cast<uchar>(payload.at(i)), 16)
+                    .rightJustified(2, '0')
+                        .toUpper(); // e.g., "A1B2C3"
                 }
+
+                // Update internal state
+                messageid = id;
+                messagedata = data;
+
+                // Emit signals
                 emit messageReceived(id, data);
+                emit messageUpdated(); // Notify QML that new data is available
             }
         }
     });
@@ -117,3 +127,14 @@ void CanHandler::sendMessage(const QString &id, const QString &data)
         emit errorMessage("Failed to send message");
     }
 }
+QString CanHandler::lastMessageId() const
+{
+    return messageid;
+}
+
+QString CanHandler::lastMessageData() const
+{
+    return messagedata;
+}
+
+

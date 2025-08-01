@@ -23,7 +23,24 @@ ApplicationWindow {
     }*/
 
     // Base Layer
+    //-----test can update---
+    Label {
+        id: canid
+        text: "Last CAN ID: " + canbus.messageid
+        anchors.centerIn: parent
+        font.pixelSize: 15
+        color: "white"
+    }
+    Label {
 
+        text: "Last CAN ID: " + canbus.messagedata
+        anchors.bottom: canid.top
+        anchors.bottomMargin: 10
+        anchors.left: canid.left
+        font.pixelSize : 15
+        color: "white"
+    }
+    //-----------------------------
     Image {
         id : backgroundcluster
         anchors.centerIn: parent
@@ -75,14 +92,22 @@ ApplicationWindow {
 
                 MyButton{
                     setIcon: isGlow ? "qrc:/icons/light/eva_phone-call-fill.svg" :  "qrc:/icons/eva_phone-call-fill.svg"
-                    onClicked: isGlow = !isGlow
+                    onClicked:{
+                        isGlow = !isGlow;
+                        road.visible = !(road.visible);
+                        roadalert.visible = !(roadalert.visible);
+                    }
                 }
                 MyButton{
-                    id : sttingsButton
+                    id : mapButton
                     setIcon: isGlow ? "qrc:/img/map_on.png" :  "qrc:/img/map_off.png"
                     onClicked : {
                         isGlow = !isGlow;
                         rectanglemap.visible = ! ( rectanglemap.visible);
+                        //secendCar.visible = ! (secendCar.visible);
+                        road.visible = ! (road.visible);
+
+
                     }
                 }
             }
@@ -109,7 +134,7 @@ ApplicationWindow {
 
             Keys.onSpacePressed: accelerating = true
             Keys.onReturnPressed: rightGauge.accelerating = true
-            Keys.onReleased: {
+            Keys.onReleased: {car
                 if (event.key === Qt.Key_Space) {
                     accelerating = false;
                     event.accepted = true;
@@ -171,14 +196,17 @@ ApplicationWindow {
             }
         }
 
-        Image {
-            anchors{
-                bottom: car.top
-                bottomMargin: 60
-                horizontalCenter:car.horizontalCenter
-            }
-            source: "qrc:/img/Model 3.png"
-        }
+        // Image {
+        //     id : secendCar
+        //     anchors{
+        //         bottom: car.top
+        //         bottomMargin: 60
+        //         horizontalCenter:car.horizontalCenter
+        //     }
+        //     source: "qrc:/img/Model 3.png"
+        //     width: 50
+        //     height: 50
+        // }
 
         Image {
             anchors{
@@ -187,6 +215,8 @@ ApplicationWindow {
                 horizontalCenter:car.horizontalCenter
             }
             source: "qrc:/icons/Headlights.svg"
+            width: 150
+            height: 150
         }
 
         Image {
@@ -197,23 +227,43 @@ ApplicationWindow {
                 horizontalCenter:speedLimit.horizontalCenter
             }
             source: "qrc:/icons/Car.svg"
+            width: 65
+            height: 65
+
         }
-
-
-
+        //-------------------------road section ---------------------------------------
         Image {
-            id: leftRoad
-            width: 127
-            height: 397
-            anchors{
-                left: speedLimit.left
-                leftMargin: 100
-                bottom: parent.bottom
-                bottomMargin: 26.50 + 50
-            }
-
-            source: "qrc:/icons/Vector 2.svg"
+            id: road
+            visible: true
+            source: "qrc:/img/road.png"
+            width: 400
+            height: backgroundcluster.height - 300
+            anchors.centerIn: backgroundcluster
         }
+        Image {
+            id: roadalert
+            visible: false
+            source: "qrc:/img/roadalert.png"
+            width: 400
+            height: backgroundcluster.height - 300
+            anchors.centerIn: backgroundcluster
+        }
+
+
+//------------------------------------------------------------------
+        // Image {
+        //     id: leftRoad
+        //     width: 127
+        //     height: 397
+        //     anchors{
+        //         left: speedLimit.left
+        //         leftMargin: 100
+        //         bottom: parent.bottom
+        //         bottomMargin: 26.50 + 50
+        //     }
+
+        //     source: "qrc:/icons/Vector 2.svg"
+        // }
 
         RowLayout{
             spacing: 20
@@ -266,7 +316,7 @@ ApplicationWindow {
             }
 
             Label{
-                text: leftGauge.value.toFixed(0) + " MPH "
+                text: leftGauge.value.toFixed(0) + " KM/H "
                 font.pixelSize: 32
                 font.family: "Inter"
                 font.bold: Font.Normal
@@ -274,24 +324,128 @@ ApplicationWindow {
                 color: "#FFFFFF"
             }
         }
+           //-----------------------------bat sec--------------------
+        Image {
+            id: battery
+            source: "qrc:/icons/battery.png"
+            anchors{
+                right:  backgroundcluster.right
+                rightMargin:  250
+                bottom: backgroundcluster.bottom
+                bottomMargin: 75
+            }
+            width: 150
+            height: 100
+            ColumnLayout{
+                spacing: 2
+                Layout.topMargin: 10
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: 2
+                Rectangle{
+                    width: 20
+                    height: 9
+                    color: leftGauge.value.toFixed(0)  >60 ? "#B8FF01" : "black"
+                }
+                Rectangle{
+                    width: 20
+                    height: 9
+                    color: leftGauge.value.toFixed(0) > 40 ? "#B8FF01" : "black"
+                }
+                Rectangle{
+                    width: 20
+                    height: 9
+                    color: leftGauge.value.toFixed(0) >20 ? "#B8FF01" : "black"
+                }
+                Rectangle{
+                    width: 20
+                    height: 9
+                    color: leftGauge.value.toFixed(0) > 0 ? "#B8FF01" : "black"
+                }
+            }
+            Label{
+                text: leftGauge.value.toFixed(0) + " % "
+                font.pixelSize: 32
+                font.family: "Inter"
+                font.bold: Font.Normal
+                font.capitalization: Font.AllUppercase
+                color: "#FFFFFF"
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: 2
+                anchors.left: parent.right
+                anchors.leftMargin: -55
+            }
+        }
+        // RowLayout{
+        //     spacing: 20
+        //       //this op MPH
+        //     anchors{
+        //         right:  backgroundcluster.right
+        //         rightMargin:  100
+        //         bottom: backgroundcluster.bottom
+        //         bottomMargin: 26.50 + 65
+        //     }
+
+        //     RowLayout{
+        //         spacing: 1
+        //         Layout.topMargin: 10
+        //         Rectangle{
+        //             width: 20
+        //             height: 15
+        //             color: leftGauge.value.toFixed(0) > 0 ? "#B8FF01" : "black"
+        //         }
+                // Rectangle{
+                //     width: 20
+                //     height: 15
+                //     color: leftGauge.value.toFixed(0) > 20 ? "#B8FF01" : "black"
+                // }
+                // Rectangle{
+                //     width: 20
+                //     height: 15
+                //     color: leftGauge.value.toFixed(0) > 40 ? "#B8FF01" : "black"
+                // }
+                // Rectangle{
+                //     width: 20
+                //     height: 15
+                //     color: leftGauge.value.toFixed(0) > 60 ? "#B8FF01" : "black"
+                // }
+                // Rectangle{
+                //     width: 20
+                //     height: 15
+                //     color: leftGauge.value.toFixed(0) > 80 ? "#B8FF01" : "black"
+                // }
+
+        //     }
+
+            // Label{
+            //     text: leftGauge.value.toFixed(0) + " % "
+            //     font.pixelSize: 32
+            //     font.family: "Inter"
+            //     font.bold: Font.Normal
+            //     font.capitalization: Font.AllUppercase
+            //     color: "#FFFFFF"
+            // }
+        // }
+     //---------------------------------------------------------------
+
 
         /*
           Right Road
         */
 
-        Image {
-            id: rightRoad
-            width: 127
-            height: 397
-            anchors{
-                right: speedLimit.right
-                rightMargin: 100
-                bottom: parent.bottom
-                bottomMargin: 26.50 + 50
-            }
+        // Image {
+        //     id: rightRoad
+        //     width: 127
+        //     height: 397
+        //     anchors{
+        //         right: speedLimit.right
+        //         rightMargin: 100
+        //         bottom: parent.bottom
+        //         bottomMargin: 26.50 + 50
+        //     }
 
-            source: "qrc:/icons/Vector 1.svg"
-        }
+        //     source: "qrc:/icons/Vector 1.svg"
+        // }
 
 
         SideGauge {

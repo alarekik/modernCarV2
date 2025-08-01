@@ -46,5 +46,6 @@
         <file>img/map_off.png</file>
         <file>img/map_on.png</file>
         <file>img/heartbeat.gif</file>
+        <file>icons/battery.png</file>
     </qresource>
 </RCC>
