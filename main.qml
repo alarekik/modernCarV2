@@ -26,14 +26,14 @@ ApplicationWindow {
     //-----test can update---
     Label {
         id: canid
-        text: "Last CAN ID: " + canbus.lastMessageId()
+        text: "Last CAN ID: " + canbus.lastMessageId
         anchors.centerIn: parent
         font.pixelSize: 15
         color: "white"
     }
     Label {
 
-        text: "Last CAN ID: " + canbus.lastMessageData()
+        text: "Last CAN ID: " + canbus.lastMessageData
         anchors.bottom: canid.top
         anchors.bottomMargin: 10
         anchors.left: canid.left
