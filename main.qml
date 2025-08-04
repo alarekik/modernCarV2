@@ -16,6 +16,34 @@ ApplicationWindow {
     color: "#000000"
     property bool isIncrementing     : true
     property bool isIncrementingleft : true
+    //------------test radar -----------
+
+    Connections {
+        target: uartport
+        function onDataReceived(message) {
+            console.log("Received in QML:", message)
+
+            if (message === "01") {
+                road.visible = false
+                roadalert.visible = true
+            } else {
+                road.visible = true
+                roadalert.visible = false
+            }
+        }
+    }
+
+    //---------------update the value of BCG and BSIS----------------
+    // Connections {
+    //     target: canbus
+    //     function onMessageUpdated() {
+    //         if (canbus.lastMessageId == "055"){
+
+    //         }
+    //     }
+    // }
+
+    //---------------------------------------------------------------
     //background
     /*background: Image{
         anchors.fill:parent
@@ -24,28 +52,23 @@ ApplicationWindow {
 
     // Base Layer
     //-----test can update---
-    Label {
-        id: canid
-        text: "Last CAN ID: " + canbus.lastMessageId
-        anchors.centerIn: parent
-        font.pixelSize: 15
-        color: "white"
-    }
-    Label {
+    // Label {
+    //     id: canid
+    //     text: "Last CAN ID: " + canbus.lastMessageId
+    //     anchors.centerIn: parent
+    //     font.pixelSize: 15
+    //     color: "white"
+    // }
+    // Label {
 
-        text: "Last CAN ID: " + canbus.lastMessageData
-        anchors.bottom: canid.top
-        anchors.bottomMargin: 10
-        anchors.left: canid.left
-        font.pixelSize : 15
-        color: "white"
-    }
-    Connections {
-        target: canHandler
-        function onMessageUpdated() {
-            console.log("Received:", canHandler.lastMessageId, canHandler.lastMessageData)
-        }
-    }
+    //     text: "Last CAN ID: " + canbus.lastMessageData
+    //     anchors.bottom: canid.top
+    //     anchors.bottomMargin: 10
+    //     anchors.left: canid.left
+    //     font.pixelSize : 15
+    //     color: "white"
+    // }
+
     //-----------------------------
     Image {
         id : backgroundcluster
@@ -782,28 +805,36 @@ ApplicationWindow {
             leftMargin: backgroundcluster.width/5.6
         }
         Label{
+            id : valueBCG
             text: "60"
-            font.pixelSize: 65
+            font.pixelSize: 40
             font.family: "Inter"
             color: "#FFFFFF"
             font.bold: Font.DemiBold
             Layout.alignment: Qt.AlignHCenter
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
+            anchors.bottomMargin: 25
             anchors.horizontalCenter: parent.horizontalCenter
         }
-        AnimatedImage {
-               id: gifImage
-               source: "qrc:/img/breathrate.gif"  // Path to your GIF
+        Image {
+               id: breath
+               source: "qrc:/img/breath.png"  // Path to your GIF
                anchors.top: parent.top
-               anchors.topMargin: 15
+               anchors.topMargin: 20
                anchors.horizontalCenter: parent.horizontalCenter
-               width: 120
-               height: 120
+               width: 65
+               height: 65
 
                // Optional: Control playback
-               playing: true  // Set to false to pause
+
            }
+        Rectangle{
+            width: parent.width *0.8
+            height: 5
+            color: "white"
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
 
     }
     Rectangle{
@@ -819,28 +850,36 @@ ApplicationWindow {
             rightMargin:  backgroundcluster.width/5.6
         }
         Label{
+
             text: "60"
-            font.pixelSize: 65
+            font.pixelSize: 40
             font.family: "Inter"
             color: "#FFFFFF"
             font.bold: Font.DemiBold
             Layout.alignment: Qt.AlignHCenter
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
+            anchors.bottomMargin: 25
             anchors.horizontalCenter: parent.horizontalCenter
         }
-        AnimatedImage {
-               id: gifImage2
-               source: "qrc:/img/heartbeat.gif"
+        Image{
+               id: heart
+               source: "qrc:/img/heart.png"
                anchors.top: parent.top
-               anchors.topMargin: 15
+               anchors.topMargin: 25
                anchors.horizontalCenter: parent.horizontalCenter
-               width: 120
-               height: 120
+               width: 65
+               height: 65
 
                // Optional: Control playback
-               playing: true  // Set to false to pause
+               // Set to false to pause
            }
+        Rectangle{
+            width: parent.width *0.8
+            height: 5
+            color: "white"
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
 
     }
 

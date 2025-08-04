@@ -42,10 +42,10 @@
         <file>icons/Car_icon.svg</file>
         <file>img/road.png</file>
         <file>img/roadalert.png</file>
-        <file>img/breathrate.gif</file>
         <file>img/map_off.png</file>
         <file>img/map_on.png</file>
-        <file>img/heartbeat.gif</file>
         <file>icons/battery.png</file>
+        <file>img/breath.png</file>
+        <file>img/heart.png</file>
     </qresource>
 </RCC>
