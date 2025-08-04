@@ -34,14 +34,17 @@ ApplicationWindow {
     }
 
     //---------------update the value of BCG and BSIS----------------
-    // Connections {
-    //     target: canbus
-    //     function onMessageUpdated() {
-    //         if (canbus.lastMessageId == "055"){
+    Connections {
+        target: canbus
+        function onMessageUpdated() {
+            if (canbus.lastMessageId == "055"){
+                valueBCG.text=lastMessagedata(2);
+                valueofBSIC.text=lastMessagedata(1);
 
-    //         }
-    //     }
-    // }
+
+            }
+        }
+    }
 
     //---------------------------------------------------------------
     //background
@@ -135,8 +138,6 @@ ApplicationWindow {
                         rectanglemap.visible = ! ( rectanglemap.visible);
                         //secendCar.visible = ! (secendCar.visible);
                         road.visible = ! (road.visible);
-
-
                     }
                 }
             }
@@ -850,7 +851,7 @@ ApplicationWindow {
             rightMargin:  backgroundcluster.width/5.6
         }
         Label{
-
+            id : valueofBSIC
             text: "60"
             font.pixelSize: 40
             font.family: "Inter"

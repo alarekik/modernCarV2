@@ -11,7 +11,12 @@ uarthandler::uarthandler(QObject *parent)
 
 bool uarthandler::openPort()
 {
-
+    // foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
+    //     if (info.hasProductIdentifier() && info.productIdentifier() == 60016) {
+    //         m_serialport->setPort(info);
+    //         break;
+    //     }
+    // }
     m_serialport->setPortName("/dev/ttyUSB2");
     m_serialport->setBaudRate(QSerialPort::Baud9600);
     m_serialport->setDataBits(QSerialPort::Data8);
