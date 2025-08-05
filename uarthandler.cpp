@@ -17,13 +17,63 @@ bool uarthandler::openPort()
     //         break;
     //     }
     // }
-    m_serialport->setPortName("/dev/ttyUSB2");
-    m_serialport->setBaudRate(QSerialPort::Baud9600);
-    m_serialport->setDataBits(QSerialPort::Data8);
-    m_serialport->setParity(QSerialPort::NoParity);
-    m_serialport->setStopBits(QSerialPort::OneStop);
-    m_serialport->setFlowControl(QSerialPort::NoFlowControl);
-    m_serialport->open(QIODevice::ReadOnly);
+    //---------------------------------------------------------------------------
+
+        foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
+            qDebug() << "Port:" << info.portName()
+            << "| Description:" << info.description()
+            << "| Vendor ID:" << info.vendorIdentifier()
+            << "| Product ID:" << info.productIdentifier();
+
+            // Match by Product ID and Vendor ID
+            if (info.vendorIdentifier() == 4292 && info.productIdentifier() == 60016) {
+                m_serialport->setPort(info);
+                m_serialport->setBaudRate(QSerialPort::Baud9600);
+                m_serialport->setDataBits(QSerialPort::Data8);
+                m_serialport->setParity(QSerialPort::NoParity);
+                m_serialport->setStopBits(QSerialPort::OneStop);
+                m_serialport->setFlowControl(QSerialPort::NoFlowControl);
+
+                if (m_serialport->open(QIODevice::ReadOnly)) {
+                    qDebug() << "Connected to" << info.portName();
+                    return true;
+                } else {
+                    qDebug() << "Failed to open port" << info.portName();
+                    return false;
+                }
+                qDebug() << "Target device not found.";
+            }
+
+
+        }
+        qDebug() << "Target device not found.";
+        return false;
+
+
+
+
+
+    //-----------------------------------------------------------------------------
+    // foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
+    //     if (info.vendorIdentifier()==4292 && info.productIdentifier() == 60016){
+    //         m_serialport->setPort(info);
+    //         m_serialport->setBaudRate(QSerialPort::Baud9600);
+    //         m_serialport->setDataBits(QSerialPort::Data8);
+    //         m_serialport->setParity(QSerialPort::NoParity);
+    //         m_serialport->setStopBits(QSerialPort::OneStop);
+    //         m_serialport->setFlowControl(QSerialPort::NoFlowControl);
+    //         m_serialport->open(QIODevice::ReadOnly);
+    //     }
+
+    // }
+    //------------------------------------------------
+    // m_serialport->setPortName("/dev/ttyUSB2");
+    // m_serialport->setBaudRate(QSerialPort::Baud9600);
+    // m_serialport->setDataBits(QSerialPort::Data8);
+    // m_serialport->setParity(QSerialPort::NoParity);
+    // m_serialport->setStopBits(QSerialPort::OneStop);
+    // m_serialport->setFlowControl(QSerialPort::NoFlowControl);
+    // m_serialport->open(QIODevice::ReadOnly);
     return true;
 }
 

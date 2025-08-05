@@ -16,6 +16,8 @@ ApplicationWindow {
     color: "#000000"
     property bool isIncrementing     : true
     property bool isIncrementingleft : true
+    property bool batisinc           : true
+
     //------------test radar -----------
 
     Connections {
@@ -37,7 +39,7 @@ ApplicationWindow {
     Connections {
         target: canbus
         function onMessageUpdated() {
-            if (canbus.lastMessageId == "055"){
+            if (canbus.lastmessageId == "055"){
                 valueBCG.text=lastMessagedata(2);
                 valueofBSIC.text=lastMessagedata(1);
 
@@ -355,8 +357,10 @@ ApplicationWindow {
             }
         }
            //-----------------------------bat sec--------------------
+
         Image {
             id: battery
+            property int batvalue: 0
             source: "qrc:/icons/battery.png"
             anchors{
                 right:  backgroundcluster.right
@@ -375,26 +379,26 @@ ApplicationWindow {
                 Rectangle{
                     width: 20
                     height: 9
-                    color: leftGauge.value.toFixed(0)  >60 ? "#B8FF01" : "black"
+                    color:  battery.batvalue >75 ? "#B8FF01" : "black"
                 }
                 Rectangle{
                     width: 20
                     height: 9
-                    color: leftGauge.value.toFixed(0) > 40 ? "#B8FF01" : "black"
+                    color: battery.batvalue > 50 ? "#B8FF01" : "black"
                 }
                 Rectangle{
                     width: 20
                     height: 9
-                    color: leftGauge.value.toFixed(0) >20 ? "#B8FF01" : "black"
+                    color: battery.batvalue >25 ? "#B8FF01" : "black"
                 }
                 Rectangle{
                     width: 20
                     height: 9
-                    color: leftGauge.value.toFixed(0) > 0 ? "#B8FF01" : "black"
+                    color: battery.batvalue > 0 ? "#B8FF01" : "black"
                 }
             }
             Label{
-                text: leftGauge.value.toFixed(0) + " % "
+                text: battery.batvalue + " % "
                 font.pixelSize: 32
                 font.family: "Inter"
                 font.bold: Font.Normal
@@ -499,7 +503,7 @@ ApplicationWindow {
     //-----------------------------animation section----------------------------------------------
     Timer {
             id: valueSenderTimer
-            interval: 50
+            interval: 200
             repeat: true
             running: true
 
@@ -534,6 +538,18 @@ ApplicationWindow {
                     if (leftGauge.value  <= 0)
                     {
                         isIncrementingleft  = true;
+                    }
+                }
+                if (batisinc){
+                    battery.batvalue +=5;
+                    if(battery.batvalue==100){
+                        batisinc=false;
+                    }
+                }
+                else{
+                    battery.batvalue -=5;
+                    if(battery.batvalue==0){
+                        batisinc=true;
                     }
                 }
 
