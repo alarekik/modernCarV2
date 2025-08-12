@@ -14,12 +14,12 @@ int main(int argc, char *argv[])
 
     //---------
     CanHandler canbus;
-    CameraController cameraController;
+    // CameraController cameraController;
     uarthandler uartport;
     //----------------
     QQmlApplicationEngine engine;
     //--------------------------
-    engine.rootContext()->setContextProperty("cameraController", &cameraController);
+    // engine.rootContext()->setContextProperty("cameraController", &cameraController);
     QQmlContext * rootContext = engine.rootContext();
     rootContext->setContextProperty("canbus", &canbus );
     QQmlContext * root =engine.rootContext();
@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
         << " | Description:" << info.description()
         << " | Vendor ID:" << info.vendorIdentifier()
         << " | Product ID:" << info.productIdentifier();
-
 
     }
 

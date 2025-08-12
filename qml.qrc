@@ -47,5 +47,9 @@
         <file>icons/battery.png</file>
         <file>img/breath.png</file>
         <file>img/heart.png</file>
+        <file>icons/cameraicon.png</file>
+        <file>icons/light/camera_icon.png</file>
+        <file>icons/mapicon.png</file>
+        <file>icons/light/mapi_con.png</file>
     </qresource>
 </RCC>

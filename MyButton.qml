@@ -1,7 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.15
+//import QtGraphicalEffects 1.15
 Button {
     id: control
     property string setIcon : ""
@@ -51,11 +51,11 @@ Button {
         visible: false
     }
 
-    OpacityMask {
-        anchors.fill: background
-        source: background
-        maskSource: mask
-    }
+    // OpacityMask {
+    //     anchors.fill: background
+    //     source: background
+    //     maskSource: mask
+    // }
 
     MouseArea {
         id: mouseArea
