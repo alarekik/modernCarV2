@@ -11,6 +11,7 @@ SOURCES += \
         cameracontroller.cpp \
         canhandler.cpp \
         main.cpp \
+        uartbcg.cpp \
         uarthandler.cpp
 
 RESOURCES += qml.qrc
@@ -29,6 +30,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     cameracontroller.h \
     canhandler.h \
+    uartbcg.h \
     uarthandler.h
 
 DISTFILES +=

@@ -51,5 +51,7 @@
         <file>icons/light/camera_icon.png</file>
         <file>icons/mapicon.png</file>
         <file>icons/light/mapi_con.png</file>
+        <file>icons/bcg_icon.png</file>
+        <file>icons/light/bcgicon.png</file>
     </qresource>
 </RCC>

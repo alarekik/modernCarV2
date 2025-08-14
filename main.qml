@@ -36,6 +36,13 @@ ApplicationWindow {
     }
 
     //---------------update the value of BCG and BSIS----------------
+    Connections{
+        target: uartbcg
+        function onbcgdatarecived(){
+            heartvalue.text=uartbcg.lastheartValue;
+            breathvalue.text=uartbcg.lastbreathValue;
+        }
+    }
     // Connections {
     //     target: canbus
     //     function onMessageUpdated() {
@@ -97,7 +104,7 @@ ApplicationWindow {
                 anchors.centerIn: parent
                 spacing: 60
                 MyButton{
-                    setIcon: isGlow ? "qrc:/icons/light/bxs_music.svg" : "qrc:/icons/bxs_music.svg"
+                    setIcon: isGlow ? "qrc:/icons/light/bcgicon.png" : "qrc:/icons/bcg_icon.png"
                     onClicked: {
 
                         isGlow = !isGlow;
@@ -774,7 +781,7 @@ ApplicationWindow {
             leftMargin: backgroundcluster.width/5.6
         }
         Label{
-            id : valueBCG
+            id : breathvalue
             text: "60"
             font.pixelSize: 40
             font.family: "Inter"
@@ -819,7 +826,7 @@ ApplicationWindow {
             rightMargin:  backgroundcluster.width/5.6
         }
         Label{
-            id : valueofBSIC
+            id : heartvalue
             text: "60"
             font.pixelSize: 40
             font.family: "Inter"

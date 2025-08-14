@@ -55,17 +55,21 @@ OBJECTS_DIR   = ./
 SOURCES       = ../../cameracontroller.cpp \
 		../../canhandler.cpp \
 		../../main.cpp \
+		../../uartbcg.cpp \
 		../../uarthandler.cpp qrc_qml.cpp \
 		moc_cameracontroller.cpp \
 		moc_canhandler.cpp \
+		moc_uartbcg.cpp \
 		moc_uarthandler.cpp
 OBJECTS       = cameracontroller.o \
 		canhandler.o \
 		main.o \
+		uartbcg.o \
 		uarthandler.o \
 		qrc_qml.o \
 		moc_cameracontroller.o \
 		moc_canhandler.o \
+		moc_uartbcg.o \
 		moc_uarthandler.o
 DIST          = /home/arekik/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/arekik/Qt/5.15.2/gcc_64/mkspecs/common/unix.conf \
@@ -273,9 +277,11 @@ DIST          = /home/arekik/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/arekik/Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
 		../../../../Car_5.pro ../../cameracontroller.h \
 		../../canhandler.h \
+		../../uartbcg.h \
 		../../uarthandler.h ../../cameracontroller.cpp \
 		../../canhandler.cpp \
 		../../main.cpp \
+		../../uartbcg.cpp \
 		../../uarthandler.cpp
 QMAKE_TARGET  = Car_5
 DESTDIR       = 
@@ -717,8 +723,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/arekik/Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameracontroller.h ../../canhandler.h ../../uarthandler.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameracontroller.cpp ../../canhandler.cpp ../../main.cpp ../../uarthandler.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameracontroller.h ../../canhandler.h ../../uartbcg.h ../../uarthandler.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameracontroller.cpp ../../canhandler.cpp ../../main.cpp ../../uartbcg.cpp ../../uarthandler.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -779,6 +785,7 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../icons/eva_phone-call-fill.svg \
 		../../icons/clarity_settings-solid.svg \
 		../../icons/ep_menu.svg \
+		../../icons/bcg_icon.png \
 		../../icons/Base.svg \
 		../../icons/Top\ Navigation.svg \
 		../../icons/entypo_home.svg \
@@ -797,7 +804,8 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../icons/light/entypo_home.svg \
 		../../icons/light/bxs_music.svg \
 		../../icons/light/ep_menu.svg \
-		../../icons/light/camera_icon.png
+		../../icons/light/camera_icon.png \
+		../../icons/light/bcgicon.png
 	/home/arekik/Qt/5.15.2/gcc_64/bin/rcc -name qml ../../qml.qrc -o qrc_qml.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -806,9 +814,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/arekik/Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /home/arekik/Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_cameracontroller.cpp moc_canhandler.cpp moc_uarthandler.cpp
+compiler_moc_header_make_all: moc_cameracontroller.cpp moc_canhandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_cameracontroller.cpp moc_canhandler.cpp moc_uarthandler.cpp
+	-$(DEL_FILE) moc_cameracontroller.cpp moc_canhandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
 moc_cameracontroller.cpp: ../../cameracontroller.h \
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
@@ -992,6 +1000,70 @@ moc_canhandler.cpp: ../../canhandler.h \
 		moc_predefs.h \
 		/home/arekik/Qt/5.15.2/gcc_64/bin/moc
 	/home/arekik/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include '/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/build/Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h' -I/home/arekik/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I'/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3' -I/home/arekik/Qt/5.15.2/gcc_64/include -I/home/arekik/Qt/5.15.2/gcc_64/include/QtLocation -I/home/arekik/Qt/5.15.2/gcc_64/include/QtPositioningQuick -I/home/arekik/Qt/5.15.2/gcc_64/include/QtQuick -I/home/arekik/Qt/5.15.2/gcc_64/include/QtMultimediaWidgets -I/home/arekik/Qt/5.15.2/gcc_64/include/QtMultimedia -I/home/arekik/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/arekik/Qt/5.15.2/gcc_64/include/QtGui -I/home/arekik/Qt/5.15.2/gcc_64/include/QtQmlModels -I/home/arekik/Qt/5.15.2/gcc_64/include/QtQml -I/home/arekik/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/arekik/Qt/5.15.2/gcc_64/include/QtPositioning -I/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialBus -I/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort -I/home/arekik/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../canhandler.h -o moc_canhandler.cpp
+
+moc_uartbcg.cpp: ../../uartbcg.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/QObject \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qlist.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qiterator.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qpair.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qpoint.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/QSerialPort \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/qserialport.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/qserialportinfo.h \
+		moc_predefs.h \
+		/home/arekik/Qt/5.15.2/gcc_64/bin/moc
+	/home/arekik/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include '/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/build/Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h' -I/home/arekik/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I'/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3' -I/home/arekik/Qt/5.15.2/gcc_64/include -I/home/arekik/Qt/5.15.2/gcc_64/include/QtLocation -I/home/arekik/Qt/5.15.2/gcc_64/include/QtPositioningQuick -I/home/arekik/Qt/5.15.2/gcc_64/include/QtQuick -I/home/arekik/Qt/5.15.2/gcc_64/include/QtMultimediaWidgets -I/home/arekik/Qt/5.15.2/gcc_64/include/QtMultimedia -I/home/arekik/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/arekik/Qt/5.15.2/gcc_64/include/QtGui -I/home/arekik/Qt/5.15.2/gcc_64/include/QtQmlModels -I/home/arekik/Qt/5.15.2/gcc_64/include/QtQml -I/home/arekik/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/arekik/Qt/5.15.2/gcc_64/include/QtPositioning -I/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialBus -I/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort -I/home/arekik/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../uartbcg.h -o moc_uartbcg.cpp
 
 moc_uarthandler.cpp: ../../uarthandler.h \
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/QObject \
@@ -1423,6 +1495,79 @@ main.o: ../../main.cpp /home/arekik/Qt/5.15.2/gcc_64/include/QtGui/QGuiApplicati
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtQml/qqmlcontext.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
+uartbcg.o: ../../uartbcg.cpp ../../uartbcg.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/QObject \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qlist.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qiterator.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qpair.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qpoint.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/QSerialPort \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/qserialport.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/qserialportinfo.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qdebug.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qmap.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qtextstream.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qlocale.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qvariant.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qset.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o uartbcg.o ../../uartbcg.cpp
+
 uarthandler.o: ../../uarthandler.cpp ../../uarthandler.h \
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
@@ -1504,6 +1649,9 @@ moc_cameracontroller.o: moc_cameracontroller.cpp
 
 moc_canhandler.o: moc_canhandler.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_canhandler.o moc_canhandler.cpp
+
+moc_uartbcg.o: moc_uartbcg.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_uartbcg.o moc_uartbcg.cpp
 
 moc_uarthandler.o: moc_uarthandler.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_uarthandler.o moc_uarthandler.cpp
