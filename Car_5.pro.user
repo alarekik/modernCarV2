@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 17.0.0, 2025-08-14T14:55:07. -->
+<!-- Written by QtCreator 17.0.0, 2025-08-15T11:19:15. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -308,9 +308,9 @@
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Car_5</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QdbLinuxRunConfiguration:</value>
      <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/Car_5.pro</value>
-     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
      <value type="QString" key="QdbRunConfig.LocalExecutable">/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/build/Boot2Qt_6_7_3_Raspberry_Pi_4_64_bit-Debug/Car_5</value>
-     <value type="QString" key="QdbRunConfig.RemoteExecutable">ssh://root@192.168.137.192/opt/Car_5/bin/Car_5</value>
+     <value type="QString" key="QdbRunConfig.RemoteExecutable">ssh://root@192.168.137.24/opt/Car_5/bin/Car_5</value>
      <value type="int" key="RemoteLinux.EnvironmentAspect.Version">1</value>
      <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
      <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
@@ -366,9 +366,9 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Car_5</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QdbLinuxRunConfiguration:</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/Car_5.pro</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
     <value type="QString" key="QdbRunConfig.LocalExecutable">/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/build/Boot2Qt_6_7_3_Raspberry_Pi_4_64_bit-Debug/Car_5</value>
-    <value type="QString" key="QdbRunConfig.RemoteExecutable">ssh://root@192.168.137.192/opt/Car_5/bin/Car_5</value>
+    <value type="QString" key="QdbRunConfig.RemoteExecutable">ssh://root@192.168.137.24/opt/Car_5/bin/Car_5</value>
     <value type="int" key="RemoteLinux.EnvironmentAspect.Version">1</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>

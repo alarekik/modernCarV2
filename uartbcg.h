@@ -27,6 +27,7 @@ private :
 
 signals:
     void bcgdatarecived();
+
 };
 
 #endif // UARTBCG_H

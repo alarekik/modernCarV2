@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'uarthandler.h'
+** Meta object code from reading C++ file 'uartbcg.h'
 **
 ** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../uarthandler.h"
+#include "../../uartbcg.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -16,7 +16,7 @@
 
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'uarthandler.h' doesn't include <QObject>."
+#error "The header file 'uartbcg.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
 #error "This file was generated using the moc from 6.7.3. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -33,118 +33,122 @@ QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
-struct qt_meta_stringdata_CLASSuarthandlerENDCLASS_t {};
-constexpr auto qt_meta_stringdata_CLASSuarthandlerENDCLASS = QtMocHelpers::stringData(
-    "uarthandler",
-    "dataReceived",
+struct qt_meta_stringdata_CLASSuartBCGENDCLASS_t {};
+constexpr auto qt_meta_stringdata_CLASSuartBCGENDCLASS = QtMocHelpers::stringData(
+    "uartBCG",
+    "bcgdatarecived",
     "",
-    "message",
-    "onReadyRead",
-    "lastMessage"
+    "Readbcg",
+    "lastheartValue",
+    "lastbreathValue"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
 #endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_CLASSuarthandlerENDCLASS[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSuartBCGENDCLASS[] = {
 
  // content:
       12,       // revision
        0,       // classname
        0,    0, // classinfo
        2,   14, // methods
-       1,   30, // properties
+       2,   28, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   26,    2, 0x06,    2 /* Public */,
+       1,    0,   26,    2, 0x06,    3 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       4,    0,   29,    2, 0x08,    4 /* Private */,
+       3,    0,   27,    2, 0x08,    4 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
 
  // properties: name, type, flags
+       4, QMetaType::QString, 0x00015001, uint(0), 0,
        5, QMetaType::QString, 0x00015001, uint(0), 0,
 
        0        // eod
 };
 
-Q_CONSTINIT const QMetaObject uarthandler::staticMetaObject = { {
+Q_CONSTINIT const QMetaObject uartBCG::staticMetaObject = { {
     QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_meta_stringdata_CLASSuarthandlerENDCLASS.offsetsAndSizes,
-    qt_meta_data_CLASSuarthandlerENDCLASS,
+    qt_meta_stringdata_CLASSuartBCGENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSuartBCGENDCLASS,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSuarthandlerENDCLASS_t,
-        // property 'lastMessage'
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSuartBCGENDCLASS_t,
+        // property 'lastheartValue'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'lastbreathValue'
         QtPrivate::TypeAndForceComplete<QString, std::true_type>,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<uarthandler, std::true_type>,
-        // method 'dataReceived'
+        QtPrivate::TypeAndForceComplete<uartBCG, std::true_type>,
+        // method 'bcgdatarecived'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        // method 'onReadyRead'
+        // method 'Readbcg'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
 
-void uarthandler::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void uartBCG::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<uarthandler *>(_o);
+        auto *_t = static_cast<uartBCG *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->dataReceived((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 1: _t->onReadyRead(); break;
+        case 0: _t->bcgdatarecived(); break;
+        case 1: _t->Readbcg(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (uarthandler::*)(const QString & );
-            if (_t _q_method = &uarthandler::dataReceived; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            using _t = void (uartBCG::*)();
+            if (_t _q_method = &uartBCG::bcgdatarecived; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
         }
     } else if (_c == QMetaObject::ReadProperty) {
-        auto *_t = static_cast<uarthandler *>(_o);
+        auto *_t = static_cast<uartBCG *>(_o);
         (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast< QString*>(_v) = _t->lastMessage(); break;
+        case 0: *reinterpret_cast< QString*>(_v) = _t->lastheartValue(); break;
+        case 1: *reinterpret_cast< QString*>(_v) = _t->lastbreathValue(); break;
         default: break;
         }
     } else if (_c == QMetaObject::WriteProperty) {
     } else if (_c == QMetaObject::ResetProperty) {
     } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_a;
 }
 
-const QMetaObject *uarthandler::metaObject() const
+const QMetaObject *uartBCG::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *uarthandler::qt_metacast(const char *_clname)
+void *uartBCG::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_CLASSuarthandlerENDCLASS.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSuartBCGENDCLASS.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
 
-int uarthandler::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int uartBCG::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -161,15 +165,14 @@ int uarthandler::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }
 
 // SIGNAL 0
-void uarthandler::dataReceived(const QString & _t1)
+void uartBCG::bcgdatarecived()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP

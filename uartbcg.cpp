@@ -1,5 +1,3 @@
-
-
 #include "uartbcg.h"
 #include "qdebug.h"
 uartBCG::uartBCG(QObject *parent)
@@ -12,7 +10,16 @@ uartBCG::uartBCG(QObject *parent)
 
 bool uartBCG::openPort()
 {
-    m_serialport->setPortName("/dev/ttyUSB0"); // or "/dev/ttyUSB0" on Linux
+    QString portname;
+    foreach (const QSerialPortInfo &info,QSerialPortInfo::availablePorts()){
+
+        if (info.vendorIdentifier() == 1027 && info.productIdentifier() == 24577) {
+
+            portname = info.portName();
+
+        }
+    }
+    m_serialport->setPortName(portname);
     m_serialport->setBaudRate(QSerialPort::Baud9600);
     m_serialport->setDataBits(QSerialPort::Data8);
     m_serialport->setParity(QSerialPort::NoParity);
@@ -70,10 +77,10 @@ void uartBCG::Readbcg()
         heartValue      =QString::number(valueH);
         breathValue     =QString::number(valueB) ;
         emit bcgdatarecived();
+
         // Remove processed data from buffer
         buffer.remove(0, index + 2 + 16);
     }
 
 
 }
-

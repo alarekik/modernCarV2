@@ -4,6 +4,7 @@
 #include "cameracontroller.h"
 #include "uarthandler.h"
 #include <QQmlContext>
+#include "uartbcg.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,12 +15,21 @@ int main(int argc, char *argv[])
 
     //---------
     CanHandler canbus;
-    // CameraController cameraController;
+    CameraController cameraController;
     uarthandler uartport;
+    uartBCG bcg;
     //----------------
     QQmlApplicationEngine engine;
     //--------------------------
-    // engine.rootContext()->setContextProperty("cameraController", &cameraController);
+    //-uart bcg-------
+
+    QQmlContext * rootbcg =engine.rootContext();
+    rootbcg->setContextProperty("bcg", &bcg);
+    //-------------------
+    //----------------
+    QQmlContext * rootcamera =engine.rootContext();
+    rootcamera->setContextProperty("cameraController", &cameraController);
+    //----------------
     QQmlContext * rootContext = engine.rootContext();
     rootContext->setContextProperty("canbus", &canbus );
     QQmlContext * root =engine.rootContext();
@@ -36,6 +46,11 @@ int main(int argc, char *argv[])
     if (!uartport.openPort()) {
         qCritical() << "Cannot proceed without opening serial port.";
         return -1;
+    }
+    if (bcg.openPort()) {
+        qDebug() << "  Port BCG open :" ;
+    }else {
+        qDebug() << "  Port not BCG open :" ;
     }
     qDebug()<<"data"<<uartport.lastMessage();
     //------------------

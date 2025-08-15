@@ -55,15 +55,21 @@ OBJECTS_DIR   = ./
 SOURCES       = ../../cameracontroller.cpp \
 		../../canhandler.cpp \
 		../../main.cpp \
+		../../uartbcg.cpp \
 		../../uarthandler.cpp qrc_qml.cpp \
+		moc_cameracontroller.cpp \
 		moc_canhandler.cpp \
+		moc_uartbcg.cpp \
 		moc_uarthandler.cpp
 OBJECTS       = cameracontroller.o \
 		canhandler.o \
 		main.o \
+		uartbcg.o \
 		uarthandler.o \
 		qrc_qml.o \
+		moc_cameracontroller.o \
 		moc_canhandler.o \
+		moc_uartbcg.o \
 		moc_uarthandler.o
 DIST          = /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/spec_pre.prf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/common/unix.conf \
@@ -450,6 +456,7 @@ DIST          = /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/s
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/qt_config.prf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/linux-oe-g++/qmake.conf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/exclusive_builds.prf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/toolchain.prf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/default_pre.prf \
@@ -473,9 +480,11 @@ DIST          = /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/s
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/lex.prf \
 		../../../../Car_5.pro ../../cameracontroller.h \
 		../../canhandler.h \
+		../../uartbcg.h \
 		../../uarthandler.h ../../cameracontroller.cpp \
 		../../canhandler.cpp \
 		../../main.cpp \
+		../../uartbcg.cpp \
 		../../uarthandler.cpp
 QMAKE_TARGET  = Car_5
 DESTDIR       = 
@@ -873,6 +882,7 @@ Makefile: ../../Car_5.pro /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/t
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/qt_config.prf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/linux-oe-g++/qmake.conf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/exclusive_builds.prf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/toolchain.prf \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/default_pre.prf \
@@ -1299,6 +1309,7 @@ Makefile: ../../Car_5.pro /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/t
 /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/qt_config.prf:
 /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/linux-oe-g++/qmake.conf:
 /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/exclusive_builds.prf:
 /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/toolchain.prf:
 /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/default_pre.prf:
@@ -1355,8 +1366,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameracontroller.h ../../canhandler.h ../../uarthandler.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameracontroller.cpp ../../canhandler.cpp ../../main.cpp ../../uarthandler.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameracontroller.h ../../canhandler.h ../../uartbcg.h ../../uarthandler.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameracontroller.cpp ../../canhandler.cpp ../../main.cpp ../../uartbcg.cpp ../../uarthandler.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1412,6 +1423,8 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../icons/Background.png \
 		../../icons/bxs_music.svg \
 		../../icons/Car.svg \
+		../../icons/cameraicon.png \
+		../../icons/mapicon.png \
 		../../icons/Base.svg \
 		../../icons/Vector.svg \
 		../../icons/Top\ Navigation.svg \
@@ -1425,11 +1438,15 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../icons/clarity_settings-solid.svg \
 		../../icons/Vector\ 1.svg \
 		../../icons/eva_phone-call-fill.svg \
+		../../icons/bcg_icon.png \
 		../../icons/Navigation.svg \
 		../../icons/light/Car_Icon.svg \
 		../../icons/light/entypo_home.svg \
 		../../icons/light/bxs_music.svg \
+		../../icons/light/camera_icon.png \
 		../../icons/light/ep_menu.svg \
+		../../icons/light/bcgicon.png \
+		../../icons/light/mapi_con.png \
 		../../icons/light/clarity_settings-solid.svg \
 		../../icons/light/eva_phone-call-fill.svg
 	/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/libexec/rcc -name qml ../../qml.qrc -o qrc_qml.cpp
@@ -1440,13 +1457,23 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/data/dummy.cpp
 	/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-g++ -pipe --sysroot=/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux -mcpu=cortex-a72 -march=armv8-a+crc -mbranch-protection=standard -fstack-protector-strong -Wformat -Wformat-security -Werror=format-security --sysroot=/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux -g -Wall -Wextra -dM -E -o moc_predefs.h /home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_canhandler.cpp moc_uarthandler.cpp
+compiler_moc_header_make_all: moc_cameracontroller.cpp moc_canhandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_canhandler.cpp moc_uarthandler.cpp
+	-$(DEL_FILE) moc_cameracontroller.cpp moc_canhandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
+moc_cameracontroller.cpp: ../../cameracontroller.h \
+		moc_predefs.h \
+		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/libexec/moc
+	/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/libexec/moc $(DEFINES) --include '/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/build/Boot2Qt_6_7_3_Raspberry_Pi_4_64_bit-Debug/moc_predefs.h' -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/linux-oe-g++ -I'/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3' -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtLocation -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtPositioningQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes/6.7.3/QtQuickShapes -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick/6.7.3/QtQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtOpenGL -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui/6.7.3/QtGui -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtMultimediaWidgets -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtMultimedia -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtWidgets -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels/6.7.3/QtQmlModels -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml/6.7.3/QtQml -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlIntegration -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtSerialBus -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtNetwork -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtPositioning -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore/6.7.3/QtCore -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtSerialPort -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins/6.7.3/QtQmlBuiltins -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins -I. -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0/aarch64-poky-linux -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0/backward -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/13.2.0/include -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/aarch64-poky-linux/13.2.0/include -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/13.2.0/include-fixed -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include ../../cameracontroller.h -o moc_cameracontroller.cpp
+
 moc_canhandler.cpp: ../../canhandler.h \
 		moc_predefs.h \
 		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/libexec/moc
 	/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/libexec/moc $(DEFINES) --include '/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/build/Boot2Qt_6_7_3_Raspberry_Pi_4_64_bit-Debug/moc_predefs.h' -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/linux-oe-g++ -I'/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3' -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtLocation -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtPositioningQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes/6.7.3/QtQuickShapes -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick/6.7.3/QtQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtOpenGL -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui/6.7.3/QtGui -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtMultimediaWidgets -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtMultimedia -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtWidgets -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels/6.7.3/QtQmlModels -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml/6.7.3/QtQml -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlIntegration -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtSerialBus -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtNetwork -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtPositioning -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore/6.7.3/QtCore -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtSerialPort -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins/6.7.3/QtQmlBuiltins -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins -I. -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0/aarch64-poky-linux -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0/backward -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/13.2.0/include -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/aarch64-poky-linux/13.2.0/include -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/13.2.0/include-fixed -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include ../../canhandler.h -o moc_canhandler.cpp
+
+moc_uartbcg.cpp: ../../uartbcg.h \
+		moc_predefs.h \
+		/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/libexec/moc
+	/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/libexec/moc $(DEFINES) --include '/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3/build/Boot2Qt_6_7_3_Raspberry_Pi_4_64_bit-Debug/moc_predefs.h' -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/mkspecs/linux-oe-g++ -I'/home/arekik/Bureau/moder-car-dashboard/Modern-Car-Dashboard-main V3' -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtLocation -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtPositioningQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuickShapes/6.7.3/QtQuickShapes -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick/6.7.3/QtQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQuick -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtOpenGL -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui/6.7.3/QtGui -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtMultimediaWidgets -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtMultimedia -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtWidgets -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtGui -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels/6.7.3/QtQmlModels -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlModels -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml/6.7.3/QtQml -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQml -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlIntegration -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtSerialBus -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtNetwork -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtPositioning -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore/6.7.3/QtCore -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtSerialPort -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtCore -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins/6.7.3 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins/6.7.3/QtQmlBuiltins -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/QtQmlBuiltins -I. -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0 -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0/aarch64-poky-linux -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include/c++/13.2.0/backward -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/13.2.0/include -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/lib/aarch64-poky-linux/13.2.0/include -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/13.2.0/include-fixed -I/home/arekik/Qtembeded/6.7.3/Boot2Qt/raspberrypi4-64/toolchain/sysroots/cortexa72-poky-linux/usr/include ../../uartbcg.h -o moc_uartbcg.cpp
 
 moc_uarthandler.cpp: ../../uarthandler.h \
 		moc_predefs.h \
@@ -1469,7 +1496,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-cameracontroller.o: ../../cameracontroller.cpp 
+cameracontroller.o: ../../cameracontroller.cpp ../../cameracontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cameracontroller.o ../../cameracontroller.cpp
 
 canhandler.o: ../../canhandler.cpp ../../canhandler.h
@@ -1480,14 +1507,23 @@ main.o: ../../main.cpp ../../canhandler.h \
 		../../uarthandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
+uartbcg.o: ../../uartbcg.cpp ../../uartbcg.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o uartbcg.o ../../uartbcg.cpp
+
 uarthandler.o: ../../uarthandler.cpp ../../uarthandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o uarthandler.o ../../uarthandler.cpp
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp
 
+moc_cameracontroller.o: moc_cameracontroller.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_cameracontroller.o moc_cameracontroller.cpp
+
 moc_canhandler.o: moc_canhandler.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_canhandler.o moc_canhandler.cpp
+
+moc_uartbcg.o: moc_uartbcg.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_uartbcg.o moc_uartbcg.cpp
 
 moc_uarthandler.o: moc_uarthandler.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_uarthandler.o moc_uarthandler.cpp

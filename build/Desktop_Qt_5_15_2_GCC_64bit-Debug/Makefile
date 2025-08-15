@@ -1492,7 +1492,8 @@ main.o: ../../main.cpp /home/arekik/Qt/5.15.2/gcc_64/include/QtGui/QGuiApplicati
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/QSerialPortInfo \
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtSerialPort/qserialportinfo.h \
 		/home/arekik/Qt/5.15.2/gcc_64/include/QtQml/QQmlContext \
-		/home/arekik/Qt/5.15.2/gcc_64/include/QtQml/qqmlcontext.h
+		/home/arekik/Qt/5.15.2/gcc_64/include/QtQml/qqmlcontext.h \
+		../../uartbcg.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 uartbcg.o: ../../uartbcg.cpp ../../uartbcg.h \

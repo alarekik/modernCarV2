@@ -34,15 +34,16 @@ ApplicationWindow {
             }
         }
     }
-
-    //---------------update the value of BCG and BSIS----------------
     Connections{
-        target: uartbcg
-        function onbcgdatarecived(){
-            heartvalue.text=uartbcg.lastheartValue;
-            breathvalue.text=uartbcg.lastbreathValue;
+        target: bcg
+        function onBcgdatarecived(){
+            heartvalue.text=bcg.lastheartValue;
+            breathvalue.text=bcg.lastbreathValue;
         }
     }
+
+    //---------------update the value of BCG and BSIS----------------
+
     // Connections {
     //     target: canbus
     //     function onMessageUpdated() {
@@ -135,6 +136,7 @@ ApplicationWindow {
                     setIcon: isGlow ? "qrc:/icons/light/eva_phone-call-fill.svg" :  "qrc:/icons/eva_phone-call-fill.svg"
                     onClicked:{
                         isGlow = !isGlow;
+
                         // road.visible = !(road.visible);
                         // roadalert.visible = !(roadalert.visible);
                     }
