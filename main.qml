@@ -17,20 +17,22 @@ ApplicationWindow {
     property bool isIncrementing     : true
     property bool isIncrementingleft : true
     property bool batisinc           : true
-
+    property bool mapon: false
     //------------test radar -----------
 
     Connections {
         target: uartport
         function onDataReceived(message) {
             console.log("Received in QML:", message)
+            if(!mapon){
 
-            if (message === "01") {
-                road.visible = false
-                roadalert.visible = true
-            } else {
-                road.visible = true
-                roadalert.visible = false
+                if (message === "01") {
+                    road.visible = false
+                    roadalert.visible = true
+                } else {
+                    road.visible = true
+                    roadalert.visible = false
+                }
             }
         }
     }
@@ -146,11 +148,21 @@ ApplicationWindow {
                     setIcon: isGlow ? "qrc:/icons/light/mapi_con.png" :  "qrc:/icons/mapicon.png"
                     onClicked : {
                         isGlow = !isGlow;
-                        rectanglemap.visible = ! ( rectanglemap.visible);
-                        // secendCar.visible = ! (secendCar.visible);
-                        road.visible         = ! (road.visible);
-                        car.visible          = ! (car.visible);
-                        light.visible        = ! (light.visible)
+                        mapon =isGlow;
+                        if (mapon){
+                            rectanglemap.visible=true;
+                            road.visible = false;
+                            roadalert.visible =false;
+                            light.visible =false;
+                            car.visible = false;
+
+                        }
+                        else {
+                            rectanglemap.visible=false;
+                            road.visible = true;
+                            light.visible = true;
+                            car.visible = true;
+                        }
                     }
                 }
             }
