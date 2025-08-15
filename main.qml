@@ -148,8 +148,9 @@ ApplicationWindow {
                         isGlow = !isGlow;
                         rectanglemap.visible = ! ( rectanglemap.visible);
                         // secendCar.visible = ! (secendCar.visible);
-                        road.visible = ! (road.visible);
-                        car.visible = ! (car.visible);
+                        road.visible         = ! (road.visible);
+                        car.visible          = ! (car.visible);
+                        light.visible        = ! (light.visible)
                     }
                 }
             }
@@ -251,6 +252,7 @@ ApplicationWindow {
         // }
 
         Image {
+            id : light
             anchors{
                 bottom: car.top
                 bottomMargin: -60
