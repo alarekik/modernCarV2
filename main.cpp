@@ -22,37 +22,32 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     //--------------------------
     //-uart bcg-------
-
     QQmlContext * rootbcg =engine.rootContext();
     rootbcg->setContextProperty("bcg", &bcg);
     //-------------------
-    //----------------
     QQmlContext * rootcamera =engine.rootContext();
     rootcamera->setContextProperty("cameraController", &cameraController);
     //----------------
     QQmlContext * rootContext = engine.rootContext();
     rootContext->setContextProperty("canbus", &canbus );
+    //------------------------------
     QQmlContext * root =engine.rootContext();
     root->setContextProperty("uartport",&uartport);
     //-------------------------------
-    for (const QSerialPortInfo &info : QSerialPortInfo::availablePorts()) {
-        qDebug() << "  Port:" << info.portName()
-        << " | Description:" << info.description()
-        << " | Vendor ID:" << info.vendorIdentifier()
-        << " | Product ID:" << info.productIdentifier();
-
+    if (uartport.openPort()) {
+        qCritical() << "BSP is  open ";
     }
-
-    if (!uartport.openPort()) {
-        qCritical() << "Cannot proceed without opening serial port.";
-        return -1;
+    else {
+        qCritical() << "BSP is not open ";
     }
     if (bcg.openPort()) {
         qDebug() << "  Port BCG open :" ;
     }else {
         qDebug() << "  Port not BCG open :" ;
     }
-    qDebug()<<"data"<<uartport.lastMessage();
+    qDebug()<<"dataBSP" <<uartport.lastMessage();
+    qDebug()<<"dataBrahth" <<bcg.lastbreathValue();
+    qDebug()<<"dataheart"  <<bcg.lastheartValue();
     //------------------
     canbus.connectToCanBus("can0");
     //----------this to ensure the connect run in GUI--------

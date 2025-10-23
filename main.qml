@@ -38,53 +38,13 @@ ApplicationWindow {
     }
     Connections{
         target: bcg
-        function onBcgdatarecived(){
+        function onBcgdatarecived(messageH,messageB){
+            console.log("Received in QML value of heart",messageH)
+            console.log("Received in QML value of breath",messageB)
             heartvalue.text=bcg.lastheartValue;
             breathvalue.text=bcg.lastbreathValue;
         }
     }
-
-    //---------------update the value of BCG and BSIS----------------
-
-    // Connections {
-    //     target: canbus
-    //     function onMessageUpdated() {
-    //         if (canbus.lastmessageId == "055"){
-    //             valueBCG.text=lastMessagedata(2);
-    //             valueofBSIC.text=lastMessagedata(1);
-
-
-    //         }
-    //     }
-    // }
-
-    //---------------------------------------------------------------
-    //background
-    /*background: Image{
-        anchors.fill:parent
-        source: "qrc:/icons/Background.png"
-    }*/
-
-    // Base Layer
-    //-----test can update---
-    // Label {
-    //     id: canid
-    //     text: "Last CAN ID: " + canbus.lastMessageId
-    //     anchors.centerIn: parent
-    //     font.pixelSize: 15
-    //     color: "white"
-    // }
-    // Label {
-
-    //     text: "Last CAN ID: " + canbus.lastMessageData
-    //     anchors.bottom: canid.top
-    //     anchors.bottomMargin: 10
-    //     anchors.left: canid.left
-    //     font.pixelSize : 15
-    //     color: "white"
-    // }
-
-    //-----------------------------
     Image {
         id : backgroundcluster
         anchors.centerIn: parent

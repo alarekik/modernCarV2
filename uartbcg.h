@@ -26,7 +26,7 @@ private :
     QByteArray buffer;
 
 signals:
-    void bcgdatarecived();
+    void bcgdatarecived(const QString &messageH,const QString &messageB);
 
 };
 

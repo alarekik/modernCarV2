@@ -19,28 +19,6 @@ bool uarthandler::openPort()
         << "| Description:" << info.description()
         << "| Vendor ID:" << info.vendorIdentifier()
         << "| Product ID:" << info.productIdentifier();
-        //------------------------------------------------
-        // QSerialPort *testPort = new QSerialPort(info);
-        // testPort->setBaudRate(QSerialPort::Baud9600);
-        // testPort->setDataBits(QSerialPort::Data8);
-        // testPort->setParity(QSerialPort::NoParity);
-        // testPort->setStopBits(QSerialPort::OneStop);
-        // testPort->setFlowControl(QSerialPort::NoFlowControl);
-        // testPort->open(QIODevice::ReadOnly);
-        // datatest = testPort->readAll();
-        // messagetest = QString::fromLatin1(datatest.toHex(' ').toUpper());
-        // if(messagetest!=""){
-        //     testPort->close();
-        //     delete testPort;
-        //     m_BCGport->setPortName(info.portName());
-        //     m_BCGport->setBaudRate(QSerialPort::Baud9600);
-        //     m_BCGport->setDataBits(QSerialPort::Data8);
-        //     m_BCGport->setParity(QSerialPort::NoParity);
-        //     m_BCGport->setStopBits(QSerialPort::OneStop);
-        //     m_BCGport->setFlowControl(QSerialPort::NoFlowControl);
-        //     m_BCGport->open(QIODevice::ReadOnly);
-        // }
-        //------------------------------------------------
         if (info.vendorIdentifier() == 4292 && info.productIdentifier() == 60016) {
             QSerialPort *testPort = new QSerialPort(info);
             testPort->setBaudRate(QSerialPort::Baud9600);
@@ -54,7 +32,7 @@ bool uarthandler::openPort()
                     datatest = testPort->readAll();
                     messagetest = QString::fromLatin1(datatest.toHex(' ').toUpper());
                     qDebug() << "Received data:" << messagetest;
-                    if (!messagetest.isEmpty()) {
+                    if (!messagetest.isEmpty() && (messagetest.left(2) =="00" || messagetest.left(2) =="01" ) ) {
                         qDebug() << "Communication port found:" << info.portName();
                         testPort->close();
                         delete testPort;
@@ -73,7 +51,8 @@ bool uarthandler::openPort()
                     }
                 }
                 testPort->close();
-            } else {
+            }
+            else {
                 qDebug() << "Failed to open test port:" << info.portName();
             }
             delete testPort;
@@ -81,9 +60,13 @@ bool uarthandler::openPort()
     }
     if (!found) {
         qDebug() << "No communication port found.";
+        return false;
+    }
+    else {
+        qDebug() << "communication port found";
         return true;
     }
-    return true;
+
 }
 
 QString uarthandler::lastMessage() const
