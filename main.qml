@@ -86,7 +86,7 @@ ApplicationWindow {
                 }
                 MyButton{
                     isGlow : true
-                    setIcon: isGlow ? "qrc:/icons/light/Car_Icon.svg" : "qrc:/icons/Car_icon.svg"
+                    setIcon: isGlow ? "qrc:/icons/light/on_volvo.png" : "qrc:/icons/off_volvo.png"
                     onClicked:{
 
                         isGlow = !isGlow;
@@ -210,19 +210,6 @@ ApplicationWindow {
                 color: "#FFFFFF"
             }
         }
-
-        // Image {
-        //     id : secendCar
-        //     anchors{
-        //         bottom: car.top
-        //         bottomMargin: 60
-        //         horizontalCenter:car.horizontalCenter
-        //     }
-        //     source: "qrc:/img/Model 3.png"
-        //     width: 50
-        //     height: 50
-        // }
-
         Image {
             id : light
             anchors{
@@ -239,12 +226,13 @@ ApplicationWindow {
             id:car
             anchors{
                 bottom: speedLimit.top
-                bottomMargin: 40
+                bottomMargin: 10
                 horizontalCenter:speedLimit.horizontalCenter
             }
-            source: "qrc:/icons/Car.svg"
-            width: 65
-            height: 65
+            source: "qrc:/img/volvo.png"
+            width: 200
+            height: 150
+
 
         }
         //-------------------------road section ---------------------------------------
@@ -264,23 +252,6 @@ ApplicationWindow {
             height: backgroundcluster.height - 300
             anchors.centerIn: backgroundcluster
         }
-
-
-//------------------------------------------------------------------
-        // Image {
-        //     id: leftRoad
-        //     width: 127
-        //     height: 397
-        //     anchors{
-        //         left: speedLimit.left
-        //         leftMargin: 100
-        //         bottom: parent.bottom
-        //         bottomMargin: 26.50 + 50
-        //     }
-
-        //     source: "qrc:/icons/Vector 2.svg"
-        // }
-
         RowLayout{
             spacing: 20
               //this op MPH
@@ -394,29 +365,6 @@ ApplicationWindow {
                 anchors.leftMargin: -55
             }
         }
-
-     //---------------------------------------------------------------
-
-
-        /*
-          Right Road
-        */
-
-        // Image {
-        //     id: rightRoad
-        //     width: 127
-        //     height: 397
-        //     anchors{
-        //         right: speedLimit.right
-        //         rightMargin: 100
-        //         bottom: parent.bottom
-        //         bottomMargin: 26.50 + 50
-        //     }
-
-        //     source: "qrc:/icons/Vector 1.svg"
-        // }
-
-
         SideGauge {
             id:rightGauge
             anchors{
@@ -559,53 +507,6 @@ ApplicationWindow {
             id: mapPlugin
             name: "osm"
         }
-    // Rectangle{
-    //     id : rectanglemap
-    //     width: backgroundcluster.width *0.65
-    //     height: backgroundcluster.height*0.35
-    //     radius: width /10
-    //     visible: false
-    //     clip: true
-    //     anchors.centerIn: backgroundcluster
-    //     opacity: 1
-    //     z: -1
-    //     color: "#dfdcd5"
-
-    //     Map {
-
-    //         id: map
-    //         width: parent.width -80
-    //         height: parent.height-15
-    //         anchors.centerIn: parent
-    //         plugin: mapPlugin
-    //         center: QtPositioning.coordinate(36.8984457, 10.1872208) // actia 36.8984457,10.1872208,
-    //         zoomLevel: 14
-    //         z : 0
-    //         opacity: 1
-    //         // MapRoute {
-    //         //     id: mapRoute
-    //         //     route: routingModel.get(0).route
-    //         // }
-
-    //         // RouteModel {
-    //         //     id: routingModel
-    //         //     plugin: mapPlugin
-    //         //     query: RouteQuery {
-    //         //         waypoints: [
-    //         //             QtPositioning.coordinate(36.8984457, 10.1872208), // Start
-    //         //             destinationCoord // Dynamic destination
-    //         //         ]
-    //         //     }
-    //         // }
-
-
-    //     }
-
-    // }
-
-    /****************************************************************************************/
-    /**************************ROUNDED MAP***************************************************/
-    /****************************************************************************************/
     Rectangle {
         id: rectanglemap
         width: backgroundcluster.width * 0.7
@@ -616,17 +517,12 @@ ApplicationWindow {
         opacity: 1
         z: -1
         clip: true
-
         border.color: "#a0a0a0"
         border.width: 1
-
-
         layer.enabled: true
         layer.smooth: true
-
         layer.effect: ShaderEffect {
             property variant source: rectanglemap
-
             fragmentShader: "
                 uniform sampler2D source;
                 varying vec2 qt_TexCoord0;
@@ -648,7 +544,6 @@ ApplicationWindow {
                 }
             "
         }
-
         Map {
             id: map
             width: parent.width * 0.9
@@ -659,90 +554,6 @@ ApplicationWindow {
             zoomLevel: 14
         }
     }
-
-
-       // This is your original Map component, but with the new shader effect
-       // Rectangle {
-       //     id: rectanglemap
-       //     width: backgroundcluster.width * 0.7
-       //     height: width // Aspect ratio of 1:1
-       //     color: "#dfdcd5" // This color is mostly irrelevant as the map will cover it
-       //     visible: true // Set to true to see the effect
-       //     anchors.centerIn: backgroundcluster
-       //     clip: true // Good practice, but the shader handles the clipping now
-
-       //     border.color: "#a0a0a0" // This border will be clipped by the shader
-       //     border.width: 1
-
-       //     // The layer is necessary to apply a ShaderEffect
-       //     layer.enabled: true
-       //     layer.smooth: true // Helps improve quality
-
-       //     layer.effect: ShaderEffect {
-       //         // Add a property to control the amount of blur from QML
-       //         property real blurAmount: 0.05
-
-       //         // The source for the shader is the rectangle and its children (the Map)
-       //         property variant source: rectanglemap
-
-       //         // The updated fragment shader for soft edges
-       //         fragmentShader: "
-       //             // Uniforms passed in from QML
-       //             uniform sampler2D source;
-       //             uniform float blurAmount;
-
-       //             // Varying passed in from the vertex shader
-       //             varying vec2 qt_TexCoord0;
-
-       //             void main() {
-       //                 // Center the texture coordinates to be [-0.5, 0.5]
-       //                 vec2 coord = qt_TexCoord0 - vec2(0.5);
-       //                 float x = coord.x;
-       //                 float y = coord.y;
-
-       //                 // Shape parameters (same as before)
-       //                 float a = 0.5;    // width
-       //                 float b = 0.23;   // height
-       //                 float k = 0.1;    // asymmetry
-
-       //                 // The formula for your teardrop/egg shape
-       //                 float oval = (x*x)/(a*a) + (y*y)/(b*b) * (1.0 + k * y);
-
-       //                 // --- KEY CHANGE IS HERE ---
-       //                 // Instead of a hard 'discard', we calculate a smooth alpha value.
-       //                 // smoothstep(edge0, edge1, x) transitions from 0.0 to 1.0 as x goes from edge0 to edge1.
-       //                 // We want the reverse (1.0 to 0.0), so we subtract the result from 1.0.
-       //                 // 'oval' is our distance metric. When it's < 1.0, we are inside the shape.
-       //                 // The transition will happen between oval=1.0 and oval=1.0 + blurAmount.
-       //                 float smooth_alpha = 1.0 - smoothstep(1.0, 1.0 + blurAmount, oval);
-
-       //                 // Get the original pixel color from the source (our Map)
-       //                 vec4 original_color = texture2D(source, qt_TexCoord0);
-
-       //                 // Set the final pixel color. We use the original RGB values,
-       //                 // but multiply its alpha by our calculated smooth_alpha.
-       //                 gl_FragColor = vec4(original_color.rgb, original_color.a * smooth_alpha);
-       //             }
-       //         "
-       //     }
-
-       //     Map {
-       //         id: map
-       //         width: parent.width
-       //         height: parent.height
-       //         anchors.centerIn: parent
-
-       //         // You need to define the plugin for the map to work.
-       //         // Example using the "osm" plugin.
-       //         plugin: Plugin {
-       //             name: "osm"
-       //         }
-
-       //         center: QtPositioning.coordinate(36.8984457, 10.1872208) // Tunis
-       //         zoomLevel: 14
-       //     }
-       // }
-    //------------------------
     //-------BCG--------------------------------------------------------
     Rectangle{
         id : breathrate

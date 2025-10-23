@@ -53,5 +53,8 @@
         <file>icons/light/mapi_con.png</file>
         <file>icons/bcg_icon.png</file>
         <file>icons/light/bcgicon.png</file>
+        <file>img/volvo.png</file>
+        <file>icons/off_volvo.png</file>
+        <file>icons/light/on_volvo.png</file>
     </qresource>
 </RCC>

@@ -730,6 +730,7 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../img/Model\ 3.png \
 		../../img/breath.png \
 		../../img/cirlcle.svg \
+		../../img/volvo.png \
 		../../img/needle.svg \
 		../../img/background.svg \
 		../../img/Subtract.svg \
@@ -750,6 +751,7 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../icons/Vector\ 1.svg \
 		../../icons/Vector\ 2.svg \
 		../../icons/mapicon.png \
+		../../icons/off_volvo.png \
 		../../icons/Vector.svg \
 		../../icons/Car_icon.svg \
 		../../icons/Headlights.svg \
@@ -760,6 +762,7 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../icons/light/Car_Icon.svg \
 		../../icons/light/clarity_settings-solid.svg \
 		../../icons/light/entypo_home.svg \
+		../../icons/light/on_volvo.png \
 		../../icons/light/bxs_music.svg \
 		../../icons/light/ep_menu.svg \
 		../../icons/light/camera_icon.png \
