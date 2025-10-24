@@ -56,5 +56,17 @@
         <file>img/volvo.png</file>
         <file>icons/off_volvo.png</file>
         <file>icons/light/on_volvo.png</file>
+        <file>icons/Icon=security, Color=white.svg</file>
+        <file>icons/Property 1=Default.svg</file>
+        <file>icons/Property 1=Variant2.svg</file>
+        <file>icons/rear-defrost.svg</file>
+        <file>icons/Seatbelt.svg</file>
+        <file>icons/seat-warmer.svg</file>
+        <file>icons/steering-wheel-warmer.svg</file>
+        <file>icons/white.svg</file>
+        <file>icons/wiper.svg</file>
+        <file>icons/image.png</file>
+        <file>icons/switchdirectionon.png</file>
+        <file>icons/alerte.png</file>
     </qresource>
 </RCC>

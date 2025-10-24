@@ -389,9 +389,89 @@ ApplicationWindow {
             maximumValue: 250
             Behavior on value { NumberAnimation { duration: 1000 }}
         }
+        Image {
+            id: belt
+            source: "qrc:/icons/Seatbelt.svg"
+            anchors.left: parent.left
+            anchors.leftMargin: 80
+            anchors.top: parent.top
+            anchors.topMargin: 175
+        }
+        Image {
+            id: wiper
+            source: "qrc:/icons/wiper.svg"
+            anchors.left: parent.left
+            anchors.leftMargin: 68
+            anchors.top: parent.top
+            anchors.topMargin: 250
+        }
+        Image {
+            id:seat_warmer
+            source: "qrc:/icons/seat-warmer.svg"
+            anchors.left: parent.left
+            anchors.leftMargin: 58
+            anchors.top: parent.top
+            anchors.topMargin: 325
+        }
+        Image {
+            id: security
+            source: "qrc:/icons/Icon=security, Color=white.svg"
+            anchors.right:  parent.right
+            anchors.rightMargin: 48
+            anchors.top: parent.top
+            anchors.topMargin: 325
+        }
+        Image {
+            id: variant
+            source: "qrc:/icons/Property 1=Variant2.svg"
+            anchors.right:  parent.right
+            anchors.rightMargin: 58
+            anchors.top: parent.top
+            anchors.topMargin: 250
+        }
+        Image {
+            id: switchdirection
+            source: "qrc:/icons/image.png"
+            anchors.right:  parent.right
+            anchors.rightMargin: 68
+            anchors.top: parent.top
+            anchors.topMargin: 175
+        }
+        Image {
+            id: switchdirectionon
+            visible: false
+            source: "qrc:/icons/switchdirectionon.png"
+            anchors.right:  parent.right
+            anchors.rightMargin: 68
+            anchors.top: parent.top
+            anchors.topMargin: 175
+        }
+        Image {
+            id: diag
+            visible: false
+            source: "qrc:/icons/alerte.png"
+            anchors.right:  parent.right
+            anchors.rightMargin: 48
+            anchors.top: parent.top
+            anchors.topMargin: 325
+        }
+
+
+
+
     }
 
     //-----------------------------animation section----------------------------------------------
+    Timer {
+            id: timer
+            interval: 350
+            repeat: true
+            running: true
+            onTriggered: {
+                diag.visible =!diag.visible
+            }
+    }
+
     Timer {
             id: valueSenderTimer
             interval: 200
@@ -443,6 +523,7 @@ ApplicationWindow {
                         batisinc=true;
                     }
                 }
+                switchdirectionon.visible=!switchdirectionon.visible;
 
             }
 
@@ -653,6 +734,7 @@ ApplicationWindow {
         }
 
     }
+
 
 }
 

@@ -738,25 +738,37 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../icons/cameraicon.png \
 		../../icons/bxs_music.svg \
 		../../icons/battery.png \
+		../../icons/Property\ 1$(EQ)Default.svg \
 		../../icons/car.png \
 		../../icons/Background.png \
 		../../icons/Navigation.png \
 		../../icons/eva_phone-call-fill.svg \
+		../../icons/white.svg \
 		../../icons/clarity_settings-solid.svg \
 		../../icons/ep_menu.svg \
 		../../icons/bcg_icon.png \
+		../../icons/alerte.png \
 		../../icons/Base.svg \
+		../../icons/switchdirectionon.png \
 		../../icons/Top\ Navigation.svg \
 		../../icons/entypo_home.svg \
 		../../icons/Vector\ 1.svg \
 		../../icons/Vector\ 2.svg \
+		../../icons/Seatbelt.svg \
+		../../icons/wiper.svg \
 		../../icons/mapicon.png \
+		../../icons/Icon$(EQ)security,\ Color$(EQ)white.svg \
+		../../icons/rear-defrost.svg \
 		../../icons/off_volvo.png \
+		../../icons/Property\ 1$(EQ)Variant2.svg \
+		../../icons/image.png \
 		../../icons/Vector.svg \
 		../../icons/Car_icon.svg \
 		../../icons/Headlights.svg \
 		../../icons/Navigation.svg \
+		../../icons/seat-warmer.svg \
 		../../icons/Car.svg \
+		../../icons/steering-wheel-warmer.svg \
 		../../icons/light/eva_phone-call-fill.svg \
 		../../icons/light/mapi_con.png \
 		../../icons/light/Car_Icon.svg \
