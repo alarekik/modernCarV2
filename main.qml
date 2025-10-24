@@ -317,53 +317,61 @@ ApplicationWindow {
             id: battery
             property int batvalue: 0
             source: "qrc:/icons/battery.png"
+            transform: Rotation {
+                        angle: 90
+                    }
             anchors{
                 right:  backgroundcluster.right
-                rightMargin:  250
+                rightMargin:  150
                 bottom: backgroundcluster.bottom
-                bottomMargin: 75
+                bottomMargin: 90
             }
             width: 150
             height: 100
             ColumnLayout{
-                spacing: 2
+                spacing: 0
                 Layout.topMargin: 10
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: 2
                 Rectangle{
-                    width: 20
-                    height: 9
+                    width: 20.5
+                    height: 10
                     color:  battery.batvalue >75 ? "#B8FF01" : "black"
                 }
                 Rectangle{
-                    width: 20
-                    height: 9
+                    width: 20.5
+                    height: 10
                     color: battery.batvalue > 50 ? "#B8FF01" : "black"
                 }
                 Rectangle{
-                    width: 20
-                    height: 9
+                    width: 20.5
+                    height: 10
                     color: battery.batvalue >25 ? "#B8FF01" : "black"
                 }
                 Rectangle{
-                    width: 20
-                    height: 9
+                    width: 20.5
+                    height: 10
                     color: battery.batvalue > 0 ? "#B8FF01" : "black"
                 }
             }
-            Label{
-                text: battery.batvalue + " % "
-                font.pixelSize: 32
-                font.family: "Inter"
-                font.bold: Font.Normal
-                font.capitalization: Font.AllUppercase
-                color: "#FFFFFF"
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: 2
-                anchors.left: parent.right
-                anchors.leftMargin: -55
+
+
+        }
+        Label{
+            text: battery.batvalue + " % "
+            font.pixelSize: 32
+            font.family: "Inter"
+            font.bold: Font.Normal
+            font.capitalization: Font.AllUppercase
+            color: "#FFFFFF"
+            anchors{
+                right: parent.right
+                rightMargin:200
+                bottom: parent.bottom
+                bottomMargin: 26.50 + 70
             }
+
         }
         SideGauge {
             id:rightGauge
