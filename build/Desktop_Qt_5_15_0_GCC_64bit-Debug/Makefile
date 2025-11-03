@@ -40,7 +40,7 @@ DISTNAME      = Car_51.0.0
 DISTDIR = /home/actia/Desktop/SHMI/modernCarV2/build/Desktop_Qt_5_15_0_GCC_64bit-Debug/.tmp/Car_51.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/actia/Qt/5.15.0/gcc_64/lib -Wl,-rpath-link,/home/actia/Qt/5.15.0/gcc_64/lib
-LIBS          = $(SUBLIBS) -lgpiod /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Location.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5PositioningQuick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Quick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5MultimediaWidgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Multimedia.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Widgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Gui.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5QmlModels.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Qml.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Network.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Positioning.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialBus.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialPort.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Location.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5PositioningQuick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Quick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5MultimediaWidgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Multimedia.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Widgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Gui.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5QmlModels.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Qml.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Network.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Positioning.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialBus.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialPort.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -250,7 +250,6 @@ DIST          = /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_pre.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/resolve_config.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_post.prf \
-		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/link_pkgconfig.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qml_debug.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/warn_on.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qt.prf \
@@ -462,7 +461,6 @@ Makefile: ../../Car_5.pro /home/actia/Qt/5.15.0/gcc_64/mkspecs/linux-g++/qmake.c
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_pre.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/resolve_config.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_post.prf \
-		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/link_pkgconfig.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qml_debug.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/warn_on.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qt.prf \
@@ -656,7 +654,6 @@ Makefile: ../../Car_5.pro /home/actia/Qt/5.15.0/gcc_64/mkspecs/linux-g++/qmake.c
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_pre.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/resolve_config.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_post.prf:
-/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/link_pkgconfig.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qml_debug.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/warn_on.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qt.prf:

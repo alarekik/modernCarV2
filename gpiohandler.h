@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QTimer>
-#include <gpiod.h>
 
 class gpiohandler : public QObject
 {

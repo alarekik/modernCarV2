@@ -1,8 +1,8 @@
 #include "gpiohandler.h"
-#include <gpiod.h>
+
 #include <QDebug>
 
-#define GPIO_CHIP "/dev/gpiochip6"  // slect the user button of the EDDIM starter kit
+#define GPIO_CHIP "/dev/gpiochip6"
 #define GPIO_LINE 14
 
 gpiohandler::gpiohandler(QObject *parent)
@@ -15,16 +15,16 @@ gpiohandler::gpiohandler(QObject *parent)
         return;
     }
 
-    m_line = gpiod_chip_get_line(m_chip, GPIO_LINE);
+    m_line = gpiod_chip_get_line_info(m_chip, GPIO_LINE);
     if (!m_line) {
         qWarning() << "Failed to get line" << GPIO_LINE;
         gpiod_chip_close(m_chip);
         return;
     }
 
-    if (gpiod_line_request_input(m_line, "qml_gpio_reader") < 0) {
+    if (gpiod_line_request_get_fd(m_line, "qml_gpio_reader") < 0) {
         qWarning() << "Failed to request input line";
-        gpiod_line_release(m_line);
+        gpiod_line_request(m_line);
         gpiod_chip_close(m_chip);
         return;
     }
@@ -38,7 +38,7 @@ gpiohandler::gpiohandler(QObject *parent)
 gpiohandler::~gpiohandler()
 {
     if (m_line)
-        gpiod_line_release(m_line);
+        gpiod_line_request(m_line);
     if (m_chip)
         gpiod_chip_close(m_chip);
 }
@@ -47,7 +47,7 @@ void gpiohandler::readGpio()
 {
     if (!m_line) return;
 
-    int val = gpiod_line_get_value(m_line);
+    int val = gpiod_line_value(m_line);
     if (val < 0) {
         qWarning() << "Failed to read GPIO value";
         return;
