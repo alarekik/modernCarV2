@@ -1,5 +1,5 @@
 #include "gpiohandler.h"
-
+#include <gpiod.h>
 #include <QDebug>
 
 #define GPIO_CHIP "/dev/gpiochip6"  // slect the user button of the EDDIM starter kit

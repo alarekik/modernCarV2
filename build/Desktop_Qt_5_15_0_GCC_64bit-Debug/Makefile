@@ -1439,7 +1439,20 @@ gpiohandler.o: ../../gpiohandler.cpp ../../gpiohandler.h \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobject_impl.h \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QTimer \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtimer.h \
-		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbasictimer.h
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbasictimer.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QDebug \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qdebug.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qhash.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qmap.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qlocale.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qvariant.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qset.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gpiohandler.o ../../gpiohandler.cpp
 
 main.o: ../../main.cpp /home/actia/Qt/5.15.0/gcc_64/include/QtGui/QGuiApplication \
@@ -1595,7 +1608,11 @@ main.o: ../../main.cpp /home/actia/Qt/5.15.0/gcc_64/include/QtGui/QGuiApplicatio
 		/home/actia/Qt/5.15.0/gcc_64/include/QtSerialPort/qserialportinfo.h \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtQml/QQmlContext \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtQml/qqmlcontext.h \
-		../../uartbcg.h
+		../../uartbcg.h \
+		../../gpiohandler.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QTimer \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtimer.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 uartbcg.o: ../../uartbcg.cpp ../../uartbcg.h \
