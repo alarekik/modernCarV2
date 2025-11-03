@@ -19,7 +19,29 @@ ApplicationWindow {
     property bool batisinc           : true
     property bool mapon: false
     //------------test radar -----------
+    //-----------test of gpio change -------
+    Connections {
+        target : button
+        function  onGpioValueChanged(){
+            if(button.gpioValue == 1){
+                led_test.visible=true;
 
+            }else{
+                ed_test.visible=flase;
+            }
+
+        }
+    }
+    Rectangle {
+        id : led_test
+        width: 50
+        height: 50
+        radius: 25
+        color: "red"
+        anchors.centerIn: parent
+    }
+
+    //-----------------------------------------------
     Connections {
         target: uartport
         function onDataReceived(message) {

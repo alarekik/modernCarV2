@@ -40,7 +40,7 @@ DISTNAME      = Car_51.0.0
 DISTDIR = /home/actia/Desktop/SHMI/modernCarV2/build/Desktop_Qt_5_15_0_GCC_64bit-Debug/.tmp/Car_51.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/actia/Qt/5.15.0/gcc_64/lib -Wl,-rpath-link,/home/actia/Qt/5.15.0/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Location.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5PositioningQuick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Quick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5MultimediaWidgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Multimedia.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Widgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Gui.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5QmlModels.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Qml.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Network.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Positioning.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialBus.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialPort.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) -lgpiod /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Location.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5PositioningQuick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Quick.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5MultimediaWidgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Multimedia.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Widgets.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Gui.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5QmlModels.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Qml.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Network.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Positioning.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialBus.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5SerialPort.so /home/actia/Qt/5.15.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -54,21 +54,25 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../../cameracontroller.cpp \
 		../../canhandler.cpp \
+		../../gpiohandler.cpp \
 		../../main.cpp \
 		../../uartbcg.cpp \
 		../../uarthandler.cpp qrc_qml.cpp \
 		moc_cameracontroller.cpp \
 		moc_canhandler.cpp \
+		moc_gpiohandler.cpp \
 		moc_uartbcg.cpp \
 		moc_uarthandler.cpp
 OBJECTS       = cameracontroller.o \
 		canhandler.o \
+		gpiohandler.o \
 		main.o \
 		uartbcg.o \
 		uarthandler.o \
 		qrc_qml.o \
 		moc_cameracontroller.o \
 		moc_canhandler.o \
+		moc_gpiohandler.o \
 		moc_uartbcg.o \
 		moc_uarthandler.o
 DIST          = /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/spec_pre.prf \
@@ -246,6 +250,7 @@ DIST          = /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_pre.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/resolve_config.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_post.prf \
+		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/link_pkgconfig.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qml_debug.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/warn_on.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qt.prf \
@@ -263,9 +268,11 @@ DIST          = /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/lex.prf \
 		../../../../Car_5.pro ../../cameracontroller.h \
 		../../canhandler.h \
+		../../gpiohandler.h \
 		../../uartbcg.h \
 		../../uarthandler.h ../../cameracontroller.cpp \
 		../../canhandler.cpp \
+		../../gpiohandler.cpp \
 		../../main.cpp \
 		../../uartbcg.cpp \
 		../../uarthandler.cpp
@@ -455,6 +462,7 @@ Makefile: ../../Car_5.pro /home/actia/Qt/5.15.0/gcc_64/mkspecs/linux-g++/qmake.c
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_pre.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/resolve_config.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_post.prf \
+		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/link_pkgconfig.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qml_debug.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/warn_on.prf \
 		/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qt.prf \
@@ -648,6 +656,7 @@ Makefile: ../../Car_5.pro /home/actia/Qt/5.15.0/gcc_64/mkspecs/linux-g++/qmake.c
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_pre.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/resolve_config.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/default_post.prf:
+/home/actia/Qt/5.15.0/gcc_64/mkspecs/features/link_pkgconfig.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qml_debug.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/warn_on.prf:
 /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/qt.prf:
@@ -681,8 +690,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameracontroller.h ../../canhandler.h ../../uartbcg.h ../../uarthandler.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameracontroller.cpp ../../canhandler.cpp ../../main.cpp ../../uartbcg.cpp ../../uarthandler.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameracontroller.h ../../canhandler.h ../../gpiohandler.h ../../uartbcg.h ../../uarthandler.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameracontroller.cpp ../../canhandler.cpp ../../gpiohandler.cpp ../../main.cpp ../../uartbcg.cpp ../../uarthandler.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -787,9 +796,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /home/actia/Qt/5.15.0/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_cameracontroller.cpp moc_canhandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
+compiler_moc_header_make_all: moc_cameracontroller.cpp moc_canhandler.cpp moc_gpiohandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_cameracontroller.cpp moc_canhandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
+	-$(DEL_FILE) moc_cameracontroller.cpp moc_canhandler.cpp moc_gpiohandler.cpp moc_uartbcg.cpp moc_uarthandler.cpp
 moc_cameracontroller.cpp: ../../cameracontroller.h \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QObject \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobject.h \
@@ -973,6 +982,67 @@ moc_canhandler.cpp: ../../canhandler.h \
 		moc_predefs.h \
 		/home/actia/Qt/5.15.0/gcc_64/bin/moc
 	/home/actia/Qt/5.15.0/gcc_64/bin/moc $(DEFINES) --include /home/actia/Desktop/SHMI/modernCarV2/build/Desktop_Qt_5_15_0_GCC_64bit-Debug/moc_predefs.h -I/home/actia/Qt/5.15.0/gcc_64/mkspecs/linux-g++ -I/home/actia/Desktop/SHMI/modernCarV2 -I/home/actia/Qt/5.15.0/gcc_64/include -I/home/actia/Qt/5.15.0/gcc_64/include/QtLocation -I/home/actia/Qt/5.15.0/gcc_64/include/QtPositioningQuick -I/home/actia/Qt/5.15.0/gcc_64/include/QtQuick -I/home/actia/Qt/5.15.0/gcc_64/include/QtMultimediaWidgets -I/home/actia/Qt/5.15.0/gcc_64/include/QtMultimedia -I/home/actia/Qt/5.15.0/gcc_64/include/QtWidgets -I/home/actia/Qt/5.15.0/gcc_64/include/QtGui -I/home/actia/Qt/5.15.0/gcc_64/include/QtQmlModels -I/home/actia/Qt/5.15.0/gcc_64/include/QtQml -I/home/actia/Qt/5.15.0/gcc_64/include/QtNetwork -I/home/actia/Qt/5.15.0/gcc_64/include/QtPositioning -I/home/actia/Qt/5.15.0/gcc_64/include/QtSerialBus -I/home/actia/Qt/5.15.0/gcc_64/include/QtSerialPort -I/home/actia/Qt/5.15.0/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../canhandler.h -o moc_canhandler.cpp
+
+moc_gpiohandler.cpp: ../../gpiohandler.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QObject \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobject.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qglobal.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qconfig.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qlogging.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qflags.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qmutex.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstring.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qchar.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringview.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qlist.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qiterator.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qpair.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qvector.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qpoint.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qregexp.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QTimer \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtimer.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbasictimer.h \
+		moc_predefs.h \
+		/home/actia/Qt/5.15.0/gcc_64/bin/moc
+	/home/actia/Qt/5.15.0/gcc_64/bin/moc $(DEFINES) --include /home/actia/Desktop/SHMI/modernCarV2/build/Desktop_Qt_5_15_0_GCC_64bit-Debug/moc_predefs.h -I/home/actia/Qt/5.15.0/gcc_64/mkspecs/linux-g++ -I/home/actia/Desktop/SHMI/modernCarV2 -I/home/actia/Qt/5.15.0/gcc_64/include -I/home/actia/Qt/5.15.0/gcc_64/include/QtLocation -I/home/actia/Qt/5.15.0/gcc_64/include/QtPositioningQuick -I/home/actia/Qt/5.15.0/gcc_64/include/QtQuick -I/home/actia/Qt/5.15.0/gcc_64/include/QtMultimediaWidgets -I/home/actia/Qt/5.15.0/gcc_64/include/QtMultimedia -I/home/actia/Qt/5.15.0/gcc_64/include/QtWidgets -I/home/actia/Qt/5.15.0/gcc_64/include/QtGui -I/home/actia/Qt/5.15.0/gcc_64/include/QtQmlModels -I/home/actia/Qt/5.15.0/gcc_64/include/QtQml -I/home/actia/Qt/5.15.0/gcc_64/include/QtNetwork -I/home/actia/Qt/5.15.0/gcc_64/include/QtPositioning -I/home/actia/Qt/5.15.0/gcc_64/include/QtSerialBus -I/home/actia/Qt/5.15.0/gcc_64/include/QtSerialPort -I/home/actia/Qt/5.15.0/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../gpiohandler.h -o moc_gpiohandler.cpp
 
 moc_uartbcg.cpp: ../../uartbcg.h \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QObject \
@@ -1313,6 +1383,65 @@ canhandler.o: ../../canhandler.cpp ../../canhandler.h \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o canhandler.o ../../canhandler.cpp
 
+gpiohandler.o: ../../gpiohandler.cpp ../../gpiohandler.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QObject \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobject.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qglobal.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qconfig.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qlogging.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qflags.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qmutex.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstring.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qchar.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringview.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qlist.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qiterator.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qpair.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qvector.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qpoint.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qregexp.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/QTimer \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qtimer.h \
+		/home/actia/Qt/5.15.0/gcc_64/include/QtCore/qbasictimer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gpiohandler.o ../../gpiohandler.cpp
+
 main.o: ../../main.cpp /home/actia/Qt/5.15.0/gcc_64/include/QtGui/QGuiApplication \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtGui/qguiapplication.h \
 		/home/actia/Qt/5.15.0/gcc_64/include/QtGui/qtguiglobal.h \
@@ -1623,6 +1752,9 @@ moc_cameracontroller.o: moc_cameracontroller.cpp
 
 moc_canhandler.o: moc_canhandler.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_canhandler.o moc_canhandler.cpp
+
+moc_gpiohandler.o: moc_gpiohandler.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gpiohandler.o moc_gpiohandler.cpp
 
 moc_uartbcg.o: moc_uartbcg.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_uartbcg.o moc_uartbcg.cpp

@@ -5,6 +5,7 @@
 #include "uarthandler.h"
 #include <QQmlContext>
 #include "uartbcg.h"
+#include "gpiohandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,9 +19,12 @@ int main(int argc, char *argv[])
     CameraController cameraController;
     uarthandler uartport;
     uartBCG bcg;
+    gpiohandler button;
     //----------------
     QQmlApplicationEngine engine;
-    //--------------------------
+    //-----------button-------------
+    QQmlContext * rootgpio =engine.rootContext();
+    rootgpio->setContextProperty("button", &button);
     //-uart bcg-------
     QQmlContext * rootbcg =engine.rootContext();
     rootbcg->setContextProperty("bcg", &bcg);
