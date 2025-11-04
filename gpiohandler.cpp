@@ -1,60 +1,61 @@
 #include "gpiohandler.h"
-
+#include <gpiod.h>
 #include <QDebug>
-
-#define GPIO_CHIP "/dev/gpiochip6"
-#define GPIO_LINE 14
 
 gpiohandler::gpiohandler(QObject *parent)
     : QObject(parent)
 {
-    // Open chip and get line
-    m_chip = gpiod_chip_open(GPIO_CHIP);
-    if (!m_chip) {
-        qWarning() << "Failed to open" << GPIO_CHIP;
-        return;
-    }
+    try {
+        // Open the GPIO chip
+        m_chip = std::make_unique<gpiod::chip>(GPIO_CHIP_NAME);
 
-    m_line = gpiod_chip_get_line_info(m_chip, GPIO_LINE);
-    if (!m_line) {
-        qWarning() << "Failed to get line" << GPIO_LINE;
-        gpiod_chip_close(m_chip);
-        return;
-    }
+        // Configure the line for input
+        gpiod::line_settings settings;
+        settings.set_direction(gpiod::line::direction::INPUT);
+        // Optional: set bias if needed (e.g., PULL_UP)
+        // settings.set_bias(gpiod::line::bias::PULL_UP);
 
-    if (gpiod_line_request_get_fd(m_line, "qml_gpio_reader") < 0) {
-        qWarning() << "Failed to request input line";
-        gpiod_line_request(m_line);
-        gpiod_chip_close(m_chip);
-        return;
-    }
+        gpiod::line_config config;
+        config.add_line_settings({GPIO_LINE_OFFSET}, settings);
 
-    // Setup periodic reading
-    m_timer = new QTimer(this);
-    connect(m_timer, &QTimer::timeout, this, &gpiohandler::readGpio);
-    m_timer->start(200); // read every 200 ms
+        // Request the line
+        m_lineRequest = std::make_unique<gpiod::line_request>(
+            m_chip->request_lines(config, "qml_gpio_reader")
+            );
+
+        // Set up timer
+        m_timer = new QTimer(this);
+        connect(m_timer, &QTimer::timeout, this, &gpiohandler::readGpio);
+        m_timer->start(200); // every 200 ms
+
+        // Initial read
+        readGpio();
+
+    } catch (const std::exception& e) {
+        qWarning() << "GPIO init failed:" << e.what();
+        // You may want to emit an error signal here
+    }
 }
 
 gpiohandler::~gpiohandler()
 {
-    if (m_line)
-        gpiod_line_request(m_line);
-    if (m_chip)
-        gpiod_chip_close(m_chip);
+    // No manual cleanup needed — unique_ptr and RAII handle everything
+    // The line is released automatically when m_lineRequest is destroyed
 }
 
 void gpiohandler::readGpio()
 {
-    if (!m_line) return;
-
-    int val = gpiod_line_value(m_line);
-    if (val < 0) {
-        qWarning() << "Failed to read GPIO value";
+    if (!m_lineRequest) {
         return;
     }
 
-    if (val != m_gpioValue) {
-        m_gpioValue = val;
-        emit gpioValueChanged();
+    try {
+        int newValue = m_lineRequest->get_value(GPIO_LINE_OFFSET);
+        if (newValue != m_gpioValue) {
+            m_gpioValue = newValue;
+            emit gpioValueChanged();
+        }
+    } catch (const std::exception& e) {
+        qWarning() << "Failed to read GPIO:" << e.what();
     }
 }
